@@ -10,7 +10,7 @@ if($_SESSION["s_usuario"] === null){
 } ?>
 
 
-<!--INICIO del cont principal-->
+<!--INICIO del cont principal  -->
 <div class="container-fluid">
     <div class="">
         <?php
