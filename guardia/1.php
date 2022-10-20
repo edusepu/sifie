@@ -1,12 +1,12 @@
 <?php require_once "vistas/parte_superior.php" ?>
 <?php
-if($_SESSION["s_usuario"] === null){
+if ($_SESSION["g_usuario"] === null) {
     include("sinpermiso.php");
     require_once "vistas/parte_inferior.php";
     echo "<script type='text/javascript' src='js/main.js'></script>";
     exit;
-}else{
-    $rol=$_SESSION['s_rol'];
+} else {
+    $rol = $_SESSION['g_rol'];
 } ?>
 
 
@@ -36,7 +36,7 @@ if($_SESSION["s_usuario"] === null){
     </div>
     <div class="jumbotron">
         <div class="container">
-            <?php echo "<H1 class='display-5' style=''>SERVICIO DE GUARDIA DE LA FECHA $fechaP</H1>";?>
+            <?php echo "<H1 class='display-5' style=''>SERVICIO DE GUARDIA DE LA FECHA $fechaP</H1>"; ?>
             <hr class="my-4">
             <h3 style=''>REGISTRO DE MOVIMIENTOS DE VEHICULOS OFICIALES</h3>
         </div>
@@ -88,11 +88,17 @@ if($_SESSION["s_usuario"] === null){
                         }
                         ?>
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-3"></div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <?php
                         if ($estado == $rol) {
+                            if ($estado == 1) {
+
+                            } else {
+                                echo "<button id='btnObservar' name='btnObservar' type='button' class='btn btn-danger' data-toggle='modal'>Observar</button>";
+                            }
+
                             echo "<button id='btnCerrar' name='btnCerrar' type='button' class='btn btn-success' data-toggle='modal'>Elevar Planilla</button>";
                         }
                         ?>
@@ -124,14 +130,14 @@ if($_SESSION["s_usuario"] === null){
 
                             <?php
                             //if ($estado == $rol) {
-                                echo "<th>Acciones</th>";
+                            echo "<th>Acciones</th>";
                             //} ?>
 
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        $e=0;
+                        $e = 0;
                         foreach ($data as $dat) {
                             ?>
                             <tr>
@@ -148,9 +154,9 @@ if($_SESSION["s_usuario"] === null){
                                 <?php
                                 if ($estado == $rol) {
                                     echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>EDITAR</button><button class='btn btn-danger btnBorrar'>ELIMINAR</button></div></div></td>";
-                                }else{
+                                } else {
                                     echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD' disabled>ELIMINAR</button></div></div></td>";
-                                }?>
+                                } ?>
                             </tr>
                             <?php
                         }
@@ -161,7 +167,6 @@ if($_SESSION["s_usuario"] === null){
             </div>
         </div>
     </div>
-
 
 
     <!--modal para ELEVAR PLANILLA-->
@@ -192,42 +197,42 @@ if($_SESSION["s_usuario"] === null){
                                 max='" . $fecha . "'>";
                             ?>
                         </div>
-                            <?php
-                            switch ($estado) {
-                                case 1:
-                                    $opcion=1;
-                                    echo "<div class='oculto'> opcion: <input id='opcion' name='opcion' type='text' value=".$opcion."></div>";
-                                    echo "<h4>Finalizar carga de la planilla y Elevar al Jefe de Guardia</h4>";
-                                    echo "<div class='p-5 border bg-light'><label>Auxiliar: </label>";
-                                    echo "<select id='gradoAux' name='gradoAux'><option value='CB'>CB</option><option value='CI'>CI</option><option value='SG'>SG</option></select>";
-                                    echo "<input id='aux' name='aux' placeholder='Nombre y Apellido' type='text'></div>";
+                        <?php
+                        switch ($estado) {
+                            case 1:
+                                $opcion = 1;
+                                echo "<div class='oculto'> opcion: <input id='opcion' name='opcion' type='text' value=" . $opcion . "></div>";
+                                echo "<h4>Finalizar carga de la planilla y Elevar al Jefe de Guardia</h4>";
+                                echo "<div class='p-5 border bg-light'><label>Auxiliar: </label>";
+                                echo "<select id='gradoAux' name='gradoAux'><option value='CB'>CB</option><option value='CI'>CI</option><option value='SG'>SG</option></select>";
+                                echo "<input id='aux' name='aux' placeholder='Nombre y Apellido' type='text'></div>";
 
-                                    break;
-                                case 2:
-                                    $opcion=2;
-                                    echo "<div class='oculto'> opcion: <input id='opcion' name='opcion' type='text' value=".$opcion."></div>";
-                                    echo "<h4>Elevar al Oficial de Servicio</h4>";
-                                    echo "<div class='p-5 border bg-light'><label>Jefe de Guardia:  </label>";
-                                    echo "<select id='gradoJ' name='gradoJ'><option value='SG'>SG</option><option value='SI'>SI</option><option value='SA'>SA</option><option value='SP'>SP</option></select>";
-                                    echo "<input id='jGu' name='jGu' placeholder='Nombre y Apellido' type='text'></div>";
+                                break;
+                            case 2:
+                                $opcion = 2;
+                                echo "<div class='oculto'> opcion: <input id='opcion' name='opcion' type='text' value=" . $opcion . "></div>";
+                                echo "<h4>Elevar al Oficial de Servicio</h4>";
+                                echo "<div class='p-5 border bg-light'><label>Jefe de Guardia:  </label>";
+                                echo "<select id='gradoJ' name='gradoJ'><option value='SG'>SG</option><option value='SI'>SI</option><option value='SA'>SA</option><option value='SP'>SP</option></select>";
+                                echo "<input id='jGu' name='jGu' placeholder='Nombre y Apellido' type='text'></div>";
 
-                                    break;
-                                case 3:
-                                    echo "<h4>Finalizar Carga de Planilla y Elevar</h4>";
+                                break;
+                            case 3:
+                                echo "<h4>Finalizar Carga de Planilla y Elevar</h4>";
 
-                                    echo "<div class='p-5 border bg-light'><label for='opcion' class='col-form-label'>ELEVAR A:</label>";
-                                    echo "<select class='' id='opcion' name='opcion'>";
-                                    echo "<option value=3>JEFE DPTO APOYO</option>";
-                                    echo "<option value=4>VICEDECANO</option>";
-                                    echo "<option value=5>DECANO</option>";
-                                    echo "</select>";
-                                    echo "</div><div class='p-5 border bg-light'>";
+                                echo "<div class='p-5 border bg-light'><label for='opcion' class='col-form-label'>ELEVAR A:</label>";
+                                echo "<select class='' id='opcion' name='opcion'>";
+                                echo "<option value=3>JEFE DPTO APOYO</option>";
+                                echo "<option value=4>VICEDECANO</option>";
+                                echo "<option value=5>DECANO</option>";
+                                echo "</select>";
+                                echo "</div><div class='p-5 border bg-light'>";
 
-                                    echo "<label>Oficial de Servicio:  </label>";
-                                    echo "<select id='gradoOf' name='gradoOf'><option value='TT'>TT</option><option value='TP'>TP</option><option value='CT'>CT</option></select>";
-                                    echo "<input id='ofSer' name='ofSer' placeholder='Nombre y Apellido' type='text'></div>";
+                                echo "<label>Oficial de Servicio:  </label>";
+                                echo "<select id='gradoOf' name='gradoOf'><option value='TT'>TT</option><option value='TP'>TP</option><option value='CT'>CT</option></select>";
+                                echo "<input id='ofSer' name='ofSer' placeholder='Nombre y Apellido' type='text'></div>";
 
-                                    break;
+                                break;
 //                                case 4:
 //                                    echo "<label for='opcion' class='col-form-label'>ELEVAR A:</label>";
 //                                    echo "<select class='form-control' id='opcion' name='opcion'>";
@@ -242,21 +247,110 @@ if($_SESSION["s_usuario"] === null){
 //                                    echo "opcion: <input id='opcion' name='opcion' type='text' value=".$opcion.">";
 //                                    echo "<h3>Aprobado</h3>";
 //                                    break;
-                            }
+                        }
 
 
-                            ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" id="btnElevar" class="btn btn-success">Elevar</button>
-                        </div>
+                        ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnElevar" class="btn btn-success">Elevar</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
+    <!--modal para OBSERVAR PLANILLA-->
 
+    <div class="modal fade" id="modalObservar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="formObservar" action="bd/observar.php" method="post" target="_self">
+                    <div class="modal-body">
+                        <div class="row oculto">
+                            idplanilla:
+                            <input id="idPlanilla2" name="idPlanilla2" type="text" value="1">
+                        </div>
+
+                        <div class="row oculto">
+                            estado: <input id="estado2" name="estado2" type="text" value=<?php echo $estado; ?>>
+                        </div>
+                        <div class="row oculto">fecha:
+                            <?php
+                            echo "<input type='date' id='fechaElevar' name='fechaElevar' value='" . $fecha . "'
+                                max='" . $fecha . "'>";
+                            ?>
+                        </div>
+                        <?php
+                        switch ($estado) {
+                            case 1:
+                                $opcion = 1;
+                                echo "<div class='oculto'> opcion: <input id='opcion2' name='opcion2' type='text' value=" . $opcion . "></div>";
+                                echo "<h4>Finalizar carga de la planilla y Elevar al Jefe de Guardia</h4>";
+                                echo "<div class='p-5 border bg-light'><label>Auxiliar: </label>";
+                                echo "<select id='gradoAux' name='gradoAux'><option value='CB'>CB</option><option value='CI'>CI</option><option value='SG'>SG</option></select>";
+                                echo "<input id='aux' name='aux' placeholder='Nombre y Apellido' type='text'></div>";
+
+                                break;
+                            case 2:
+                                $opcion = 2;
+                                echo "<div class='oculto'> opcion: <input id='opcion2' name='opcion2' type='text' value=" . $opcion . "></div>";
+                                echo "<h4>Observar Planilla y Enviar a Corregir</h4>";
+                                echo "<div class='p-5 border bg-light'>";
+                                echo "<div class='form-floating'>";
+                                echo "<label for='observa'>Observación</label><textarea class='form-control' name='observa' id='observa' style='width: 70%'></textarea>";
+                                echo "</div>";
+                                echo "</div>";
+
+                                break;
+                            case 3:
+                                $opcion = 3;
+                                echo "<div class='oculto'> opcion: <input id='opcion2' name='opcion2' type='text' value=" . $opcion . "></div>";
+                                echo "<h4>Observar Planilla y Enviar a Corregir</h4>";
+                                echo "<div class='p-5 border bg-light'>";
+                                echo "<div class='form-floating'>";
+                                echo "<label for='observa'>Observación</label><textarea class='form-control' name='observa' id='observa' style='width: 70%'></textarea>";
+                                echo "</div>";
+                                echo "</div>";
+
+
+                                break;
+//                                case 4:
+//                                    echo "<label for='opcion' class='col-form-label'>ELEVAR A:</label>";
+//                                    echo "<select class='form-control' id='opcion' name='opcion'>";
+//                                    echo "<option value=4>VICEDECANO</option>";
+//                                    echo "<option value=5>DECANO</option>";
+//
+//
+//                                    echo "</select>";
+//                                case 5:
+//                                case 6:
+//                                    $opcion=4;
+//                                    echo "opcion: <input id='opcion' name='opcion' type='text' value=".$opcion.">";
+//                                    echo "<h3>Aprobado</h3>";
+//                                    break;
+                        }
+
+
+                        ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" id="btnElevar" class="btn btn-success">Enviar a Corrección</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--modal para OBSERVAR PLANILLA-->
     <!--Modal para CRUD-->
     <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -271,10 +365,10 @@ if($_SESSION["s_usuario"] === null){
                 <form id="formPersonas" class="needs-validation">
                     <div class="modal-body">
                         <div class="form-group oculto">
-                            <?php //$fecha = date('Y-m-d', time());echo $fecha;
-?>
+
                             <label for="fecha1" class="col-form-label">Fecha:</label>
-                            <input type="text" class="form-control" id="fecha1" name="fecha1" value="<?php echo $fechaP;?>">
+                            <input type="text" class="form-control" id="fecha1" name="fecha1"
+                                   value="<?php echo $fechaP; ?>">
 
                         </div>
                         <div class="form-group">
@@ -332,130 +426,8 @@ if($_SESSION["s_usuario"] === null){
         </div>
     </div>
 
-    <!--Modal para Detalle-->
-    <div class="modal fade" id="modalDetalle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel2"></h5>
-                    <a id="detalle" href="" target="_blank"
-                       class="detalle sidebar-brand d-flex align-items-center justify-content-center">
-                        <!--  <div class="sidebar-brand-icon rotate-n-15">-->
-                        <div>
-                            <img class="detalle" style=" height: 50px;" src="img/ver-detalles.png">
-                        </div>
-                        <!--<div class="sidebar-brand-text mx-3">Logo_FIE_hor</div>-->
-                    </a>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="formDetalle" class="form-basic">
-                    <div class="form-row shadow-sm p-3 mb-5 bg-body rounded">
-                        <div class="col-12 d-inline">
-                            <label>
-                                <span>Nombre de Equipo</span></label>
-                            <input type="text" name="nombreEquipo" id="nombreEquipo">
-                        </div>
 
-                    </div>
-                    <div class="form-row shadow-sm p-3 mb-5 bg-body rounded">
-                        <div class="col-12 d-inline">
-                            <label>
-                                <span>Microprocesador</span>
-                            </label>
-                            <select class="select" id="tipoMicro">
-                                <option value="1">AMD</option>
-                                <option value="2">Intel</option>
-                            </select>
-                            <input type="text" id="micro" name="micro" required>
-                        </div>
-
-                    </div>
-
-                    <div class="form-row shadow-sm p-3 mb-5 bg-body rounded">
-                        <div class="col-12 d-inline">
-                            <label>
-                                <span>Memoria RAM</span></label>
-                            <input style="width:90px" type="number" name="ram" id="ram" required> GB
-                        </div>
-
-                    </div>
-
-                    <div class="form-row shadow-sm p-3 mb-5 bg-body rounded">
-                        <div class="col-12 d-inline">
-                            <label>
-                                <span>Disco Rígido</span>
-                            </label>
-                            <select class="select" id="tipoDisco">
-                                <option value="1">HDD</option>
-                                <option value="2">SSD</option>
-                            </select>
-                            <input style="width:90px" type="number" id="disco" name="disco" required>
-                            <select class="select" id="capacidadDisco">
-                                <option value="1">GB</option>
-                                <option value="2">TB</option>
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="form-row shadow-sm p-3 mb-5 bg-body rounded">
-                        <div class="col-12 d-inline">
-                            <label>
-                                <span>Sistema Operativo</span></label>
-                            <input type="text" name="so" id="so">
-                        </div>
-
-                    </div>
-
-                    <div class="form-row shadow-sm p-3 mb-5 bg-body rounded">
-                        <label>
-                            <span style="color: #858796;">Observaciones</span>
-                            <textarea name="obs" id="obs"></textarea>
-                        </label>
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnGuardarDetalle" class="btn btn-dark">Guardar</button>
-                    </div>
-
-
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-    <!--Modal para QR-->
-    <div class="modal fade" id="modalQR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="formQR">
-                    <div class="modal-body">
-                        <div class='result'>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-</div>
-<!--FIN del cont principal-->
-<?php require_once "vistas/parte_inferior.php" ?>
-<script type="text/javascript" src="js/1.js"></script>
+    <!--FIN del cont principal-->
+    <?php require_once "vistas/parte_inferior.php" ?>
+    <script type="text/javascript" src="js/1.js"></script>
 

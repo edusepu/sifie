@@ -68,6 +68,7 @@ if (@ldap_bind($ad, $user, $password)) {
         $cargos = $link['cargos'];
         $fundacion = $link['fundacion'];
         $proyecto = $link['proyecto'];
+        $rolG =  $link['guardia'];
 
     }
 
@@ -75,12 +76,17 @@ if (@ldap_bind($ad, $user, $password)) {
     if($resultado->rowCount() >= 1){
         //  $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION["s_usuario"] = $usuario;
-        $_SESSION["s_rol"] = $rol;
+        $_SESSION["g_usuario"] = $usuario;
+        $_SESSION["s_rol"] = $rol; //rol para el sistema de efectos
+        $_SESSION["g_rol"] = $rolG; //rol para sistema de la guardia
         $_SESSION["cargos"] = $cargos;
         $_SESSION["fundacion"] = $fundacion;
         $_SESSION["proyecto"] = $proyecto;
+        $_SESSION["tipologin"] = 1;//con usuario de dominio
     }else{
         $_SESSION["s_usuario"] = null;
+        $_SESSION["g_usuario"] = null;
+
         $data=null;
     }
 }

@@ -34,17 +34,8 @@ switch ($opcion) {
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
-//    case 3: //baja
-//        $consulta = "DELETE FROM movimientosvo WHERE id='$id' ";
-//        $resultado = $conexion->prepare($consulta);
-//        $resultado->execute();
-////        $consulta = "SELECT id, NNE, INE, NI, dpto, ubicacion, (select descripcion from departamentos where id=dpto) as dptoNombre FROM efectos LEFT JOIN detallecomputadora ON efectos.id=detallecomputadora.idDetalle WHERE id='$id' ";
-////        $resultado = $conexion->prepare($consulta);
-////        $resultado->execute();
-//        $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
-//        break;
     case 3: //Elevar al J Dpto Apoyo
-        $consulta = "UPDATE registroplanillas SET estado=$opcion, ofSer='$ofSer' WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
+        $consulta = "UPDATE registroplanillas SET estado=4, ofSer='$ofSer', observacion='' WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);

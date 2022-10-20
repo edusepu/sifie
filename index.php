@@ -1,11 +1,11 @@
 <?php
-//session_start();
-//echo $_SESSION["url"];
+session_start();
+//echo $_SESSION["s_usuario"];
 //echo "hola";
 //var_dump($_SESSION);
-//if($_SESSION["s_usuario"] === null){
-  //  header("Location: ../index.php");
-//}
+if($_SESSION["s_usuario"] === null){
+    header("Location: login.php");
+}
 
 ?>
 <!doctype html>
@@ -15,7 +15,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Sistema de Efectos</title>
+        <title>Sistema Integrado de la FIE</title>
         <link rel="shortcut icon" href="imagenes/icono.ico">
 
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -42,7 +42,7 @@
 <!--                        <button class="btn btn-lg btn-primary btn-block" type="submit">Inxgresar</button>-->
                         <a class='btn btn-success' href='efectos' role='button'>SISTEMA DE EFECTOS</a>
 
-                        <a class='btn btn-success' href='documentacionGuardia' role='button'>GUARDIA</a>
+                        <a class='btn btn-success' href='guardia' role='button'>GUARDIA</a>
 
                     </div>
                 </div>

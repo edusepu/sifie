@@ -3,7 +3,7 @@ $('#formLogin').submit(function(e){
    var usuario = $.trim($("#usuario").val());    
    var password =$.trim($("#password").val());
    var idurl =$.trim($("#id").val());
-   //alert('primer '+idurl);
+   //alert('primer '+usuario+password);
     if(usuario.length == "" || password == ""){
       Swal.fire({
           type:'warning',
@@ -30,27 +30,10 @@ $('#formLogin').submit(function(e){
                        confirmButtonText:'Ingresar'
                    }).then((result) => {
                        if(result.value){
-//console.log(data.usuario);
-                          // var data = jQuery.parseJSON(result);
-
-                           //window.location.href = "vistas/pag_inicio.php";
-                        //   alert("segundo "+idurl);
-                          // console.log(data);
-                         //  console.log("hola");
-                           if(idurl){
-                               //hacemos lo que se requiera en caso de que la variable contenga null
-                               console.log(data);
-                               console.log("///");
-                               console.log(result);
-                               window.location.href = "redirect.php?id="+idurl;
-                           }else{
-                             //  alert("sdsdds"+idurl);
                                console.log(data);
                                console.log("///");
                                console.log(data["usuario"]);
                                window.location.href = "redirect.php";
-                           }
-
                        }
                    })
                    

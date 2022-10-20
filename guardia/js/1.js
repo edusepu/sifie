@@ -45,7 +45,15 @@ $(document).ready(function () {
         id = null;
         opcion = 1; //alta
     });
-
+    $("#btnObservar").click(function () {
+        $("#formObservar").trigger("reset");
+        $(".modal-header").css("background-color", "#1cc88a");
+        $(".modal-header").css("color", "white");
+        $(".modal-title").text("Observar Planilla");
+        $("#modalObservar").modal("show");
+        id = null;
+        opcion = 1; //alta
+    });
     var fila; //capturar la fila para editar o borrar el registro
 
     //botón EDITAR    

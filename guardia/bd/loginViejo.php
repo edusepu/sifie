@@ -19,29 +19,33 @@ $resultado = $conexion->prepare($consulta);
 $resultado->execute();
 
 $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
-$usuarios= array();
+//$usuarios= array();
 
 foreach ($data as $row => $link) {
-    $usuarios[$row] = $link['tipo'];
+   // $usuarios[$row] = $link['tipo'];
+    $usuario = $link['usuario'];
     $rol = $link['rol'];
-   // $cargos = $link['cargos'];
-   // $fundacion = $link['fundacion'];
-   // $proyecto = $link['proyecto'];
-
 }
 
 
 if($resultado->rowCount() >= 1){
   //  $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
-    $_SESSION["s_usuario"] = $usuario;
-    $_SESSION["s_rol"] = $rol;
+   // $_SESSION["s_usuario"] = $usuario;
+    $_SESSION["g_usuario"] = $usuario;
+
+    $_SESSION["g_rol"] = $rol;
 //    $_SESSION["cargos"] = $cargos;
 //    $_SESSION["fundacion"] = $fundacion;
 //    $_SESSION["proyecto"] = $proyecto;
+    $_SESSION["tipologin"] = 2;//con usuario de la base de datos
+
 }else{
-    $_SESSION["s_usuario"] = null;
+    //$_SESSION["s_usuario"] = null;
+    $_SESSION["g_usuario"] = null;
+
     $data=null;
 }
+
 
 //$data[]=("url:hola");
 print json_encode($data);

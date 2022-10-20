@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed546dbe-d298-41be-9f3d-6e7deb4c7a75" name="Changes" comment="" />
+    <list default="true" id="ed546dbe-d298-41be-9f3d-6e7deb4c7a75" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/guardia/bd/observar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bd/loginLDAP.php" beforeDir="false" afterPath="$PROJECT_DIR$/bd/loginLDAP.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bd/loginViejo.php" beforeDir="false" afterPath="$PROJECT_DIR$/bd/loginViejo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/1.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/admin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/bd/crud.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/bd/crudAdmin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/bd/crudDetalle.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/bd/elevar.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/bd/elevar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/bd/loginViejo.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/bd/loginViejo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/bd/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/bd/logout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/bd/ubicar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/indexBorrar.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/js/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/js/1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/js/codigo.js" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/js/codigo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/vistas/parte_superior.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/vistas/parte_superior.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,20 +40,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/sifie/guardia&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/sifie/guardia/bd",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\sifie\guardia" />
       <recent name="C:\xampp\htdocs\sifie\guardia\bd" />
+      <recent name="C:\xampp\htdocs\sifie\bd" />
+      <recent name="C:\xampp\htdocs\sifie\guardia" />
       <recent name="C:\xampp\htdocs\sifie\guardia\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sifie\guardia" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -50,10 +73,22 @@
       <workItem from="1664193863918" duration="2696000" />
       <workItem from="1664546104542" duration="32239000" />
       <workItem from="1665587394845" duration="8565000" />
+      <workItem from="1666183663702" duration="19237000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
