@@ -24,6 +24,7 @@ if ($_SESSION["g_usuario"] === null) {
         $objeto = new Conexion();
         $conexion = $objeto->Conectar();
 
+
         $consulta = "SELECT * FROM estadoplanilla WHERE id=(SELECT estado FROM registroplanillas where fecha='$fecha' and idPlanilla=1)";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
@@ -31,6 +32,15 @@ if ($_SESSION["g_usuario"] === null) {
         foreach ($data as $row => $link) {
             $estado = $link['id'];
             $estadoDesc = $link['descripcion'];
+
+        }
+
+        $consulta = "SELECT observacion FROM registroplanillas where fecha='$fecha' and idPlanilla=1";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($data as $row => $link) {
+            $obs = $link['observacion'];
         }
         ?>
     </div>
@@ -41,7 +51,33 @@ if ($_SESSION["g_usuario"] === null) {
             <h3 style=''>REGISTRO DE MOVIMIENTOS DE VEHICULOS OFICIALES</h3>
         </div>
     </div>
+    <?php
+
+    $consulta = "SELECT * FROM vehiculos";
+    $resultado = $conexion->prepare($consulta);
+    $resultado->execute();
+    $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+    $vehiculos = array();
+    foreach ($data as $row => $link) {
+        $vehiculos[$row] = $link['tipo'] . " - " . $link['ni'];
+
+    }
+
+    $consulta = "SELECT id, lugar, horaSalida, horaEntrada, destino, (select tipo from vehiculos where id=vehiculo) as vehiculo, conductor, kmSalida,kmEntrada,observacion FROM movimientosvo where fecha='$fecha'";
+    $resultado = $conexion->prepare($consulta);
+    $resultado->execute();
+    $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+    ?>
+
     <div class="container">
+        <?php
+        if (!empty($obs)) {
+            echo "<h5>Observación: </h5><div class='alert alert-danger' role='alert'>";
+            echo "Observado por " . $obs;
+            echo "</div>";
+        }
+        ?>
 
         <div class="row">
             <div class="col-md-3">
@@ -58,24 +94,6 @@ if ($_SESSION["g_usuario"] === null) {
 
     </div>
 
-    <?php
-
-    $consulta = "SELECT * FROM vehiculos";
-    $resultado = $conexion->prepare($consulta);
-    $resultado->execute();
-    $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
-    $vehiculos = array();
-    foreach ($data as $row => $link) {
-        $vehiculos[$row] = $link['tipo'] . " - " . $link['ni'];
-
-    }
-    $consulta = "SELECT id, lugar, horaSalida, horaEntrada, destino, (select tipo from vehiculos where id=vehiculo) as vehiculo, conductor, kmSalida,kmEntrada,observacion FROM movimientosvo where fecha='$fecha'";
-    $resultado = $conexion->prepare($consulta);
-    $resultado->execute();
-    $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
-
-    ?>
-
 
     <div class="container">
         <div class="row">
@@ -84,7 +102,10 @@ if ($_SESSION["g_usuario"] === null) {
                     <div class="col-md-6">
                         <?php
                         if ($estado == $rol) {
-                            echo "<button id='btnNuevo' name='btnNuevo' type='button' class='btn btn-primary' data-toggle='modal'>Nuevo</button>";
+                            if ($rol == 5 || $rol == 6 || $rol == 4) {
+                            } else {
+                                echo "<button id='btnNuevo' name='btnNuevo' type='button' class='btn btn-primary' data-toggle='modal'>Nuevo</button>";
+                            }
                         }
                         ?>
                     </div>
@@ -96,7 +117,10 @@ if ($_SESSION["g_usuario"] === null) {
                             if ($estado == 1) {
 
                             } else {
+
                                 echo "<button id='btnObservar' name='btnObservar' type='button' class='btn btn-danger' data-toggle='modal'>Observar</button>";
+
+
                             }
 
                             echo "<button id='btnCerrar' name='btnCerrar' type='button' class='btn btn-success' data-toggle='modal'>Elevar Planilla</button>";
@@ -153,7 +177,14 @@ if ($_SESSION["g_usuario"] === null) {
                                 <td class=""><?php echo $dat['observacion'] ?></td>
                                 <?php
                                 if ($estado == $rol) {
-                                    echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>EDITAR</button><button class='btn btn-danger btnBorrar'>ELIMINAR</button></div></div></td>";
+                                    if ($rol == 5 || $rol == 6 || $rol == 4) {
+                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD' disabled>ELIMINAR</button></div></div></td>";
+
+                                    } else {
+                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>EDITAR</button><button class='btn btn-danger btnBorrar'>ELIMINAR</button></div></div></td>";
+
+                                    }
+
                                 } else {
                                     echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD' disabled>ELIMINAR</button></div></div></td>";
                                 } ?>
@@ -194,10 +225,11 @@ if ($_SESSION["g_usuario"] === null) {
                         <div class="row oculto">fecha:
                             <?php
                             echo "<input type='date' id='fechaElevar' name='fechaElevar' value='" . $fecha . "'
-                                max='" . $fecha . "'>";
+                                    max='" . $fecha . "'>";
                             ?>
                         </div>
                         <?php
+                        $opcion = 0;
                         switch ($estado) {
                             case 1:
                                 $opcion = 1;
@@ -205,7 +237,7 @@ if ($_SESSION["g_usuario"] === null) {
                                 echo "<h4>Finalizar carga de la planilla y Elevar al Jefe de Guardia</h4>";
                                 echo "<div class='p-5 border bg-light'><label>Auxiliar: </label>";
                                 echo "<select id='gradoAux' name='gradoAux'><option value='CB'>CB</option><option value='CI'>CI</option><option value='SG'>SG</option></select>";
-                                echo "<input id='aux' name='aux' placeholder='Nombre y Apellido' type='text'></div>";
+                                echo "<input id='aux' name='aux' placeholder='Nombre y Apellido' type='text' required></div>";
 
                                 break;
                             case 2:
@@ -214,10 +246,11 @@ if ($_SESSION["g_usuario"] === null) {
                                 echo "<h4>Elevar al Oficial de Servicio</h4>";
                                 echo "<div class='p-5 border bg-light'><label>Jefe de Guardia:  </label>";
                                 echo "<select id='gradoJ' name='gradoJ'><option value='SG'>SG</option><option value='SI'>SI</option><option value='SA'>SA</option><option value='SP'>SP</option></select>";
-                                echo "<input id='jGu' name='jGu' placeholder='Nombre y Apellido' type='text'></div>";
+                                echo "<input id='jGu' name='jGu' placeholder='Nombre y Apellido' type='text' required></div>";
 
                                 break;
                             case 3:
+
                                 echo "<h4>Finalizar Carga de Planilla y Elevar</h4>";
 
                                 echo "<div class='p-5 border bg-light'><label for='opcion' class='col-form-label'>ELEVAR A:</label>";
@@ -230,23 +263,43 @@ if ($_SESSION["g_usuario"] === null) {
 
                                 echo "<label>Oficial de Servicio:  </label>";
                                 echo "<select id='gradoOf' name='gradoOf'><option value='TT'>TT</option><option value='TP'>TP</option><option value='CT'>CT</option></select>";
-                                echo "<input id='ofSer' name='ofSer' placeholder='Nombre y Apellido' type='text'></div>";
+                                echo "<input id='ofSer' name='ofSer' placeholder='Nombre y Apellido' type='text' required></div>";
 
                                 break;
-//                                case 4:
-//                                    echo "<label for='opcion' class='col-form-label'>ELEVAR A:</label>";
-//                                    echo "<select class='form-control' id='opcion' name='opcion'>";
-//                                    echo "<option value=4>VICEDECANO</option>";
-//                                    echo "<option value=5>DECANO</option>";
-//
-//
-//                                    echo "</select>";
-//                                case 5:
-//                                case 6:
-//                                    $opcion=4;
-//                                    echo "opcion: <input id='opcion' name='opcion' type='text' value=".$opcion.">";
-//                                    echo "<h3>Aprobado</h3>";
-//                                    break;
+                            case 4:
+                                echo "<h4>Finalizar Carga de Planilla y Elevar</h4>";
+                                echo "<div class='p-5 border bg-light'><label for='opcion' class='col-form-label'>ELEVAR A:</label>";
+                                echo "<select class='form-control' id='opcion' name='opcion'>";
+                                echo "<option value=4>VICEDECANO</option>";
+                                echo "<option value=5>DECANO</option>";
+                                echo "</select>";
+                                echo "</div>";
+                                //echo "<input id='jApoyo' name='jApoyo' placeholder='Nombre y Apellido' type='hidden' value='Jefe Dpto Apoyo'></div>";
+
+                                break;
+                            case 5:
+                                $cer = 5;
+                                echo "<div class='oculto'> opcion: <input id='cer' name='cer' type='text' value=" . $cer . "></div>";
+
+                                echo "<h4>Finalizar Carga de Planilla</h4>";
+
+                                echo "<div class='p-5 border bg-light'><h3>¿Se encuentra la Planilla correctamente cargada?</h3></div>";
+                                break;
+                            case 6:
+                                $cer = 6;
+                                echo "<div class='oculto'> opcion: <input id='opcion' name='opcion' type='text' value=" . $cer . "></div>";
+
+                                echo "<h4>Finalizar Carga de Planilla</h4>";
+
+                                echo "<div class='p-5 border bg-light'><h3>¿Se encuentra la Planilla correctamente cargada?</h3></div>";
+                                break;
+                                break;
+                            //                                case 5:
+                            //                                case 6:
+                            //                                    $opcion=4;
+                            //                                    echo "opcion: <input id='opcion' name='opcion' type='text' value=".$opcion.">";
+                            //                                    echo "<h3>Aprobado</h3>";
+                            //                                    break;
                         }
 
 
@@ -254,7 +307,15 @@ if ($_SESSION["g_usuario"] === null) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" id="btnElevar" class="btn btn-success">Elevar</button>
+                        <?php
+                        if ($opcion == 5 || $opcion == 6) {
+                            echo "<button type='submit' id='btnElevar' class='btn btn-success'>Finalizar</button>";
+
+                        } else {
+                            echo "<button type='submit' id='btnElevar' class='btn btn-success'>Elevar</button>";
+                        }
+                        ?>
+
                     </div>
                 </form>
             </div>
@@ -286,7 +347,7 @@ if ($_SESSION["g_usuario"] === null) {
                         <div class="row oculto">fecha:
                             <?php
                             echo "<input type='date' id='fechaElevar' name='fechaElevar' value='" . $fecha . "'
-                                max='" . $fecha . "'>";
+                                    max='" . $fecha . "'>";
                             ?>
                         </div>
                         <?php
@@ -323,20 +384,42 @@ if ($_SESSION["g_usuario"] === null) {
 
 
                                 break;
-//                                case 4:
-//                                    echo "<label for='opcion' class='col-form-label'>ELEVAR A:</label>";
-//                                    echo "<select class='form-control' id='opcion' name='opcion'>";
-//                                    echo "<option value=4>VICEDECANO</option>";
-//                                    echo "<option value=5>DECANO</option>";
-//
-//
-//                                    echo "</select>";
-//                                case 5:
-//                                case 6:
-//                                    $opcion=4;
-//                                    echo "opcion: <input id='opcion' name='opcion' type='text' value=".$opcion.">";
-//                                    echo "<h3>Aprobado</h3>";
-//                                    break;
+                            case 4:
+                                $opcion = 4;
+                                echo "<div class='oculto'> opcion: <input id='opcion2' name='opcion2' type='text' value=" . $opcion . "></div>";
+                                echo "<h4>Observar Planilla y Enviar a Corregir</h4>";
+                                echo "<div class='p-5 border bg-light'>";
+                                echo "<div class='form-floating'>";
+                                echo "<label for='observa'>Observación</label><textarea class='form-control' name='observa' id='observa' style='width: 70%'></textarea>";
+                                echo "</div>";
+                                echo "</div>";
+                                break;
+                            case 5:
+                                $opcion = 5;
+                                echo "<div class='oculto'> opcion: <input id='opcion2' name='opcion2' type='text' value=" . $opcion . "></div>";
+                                echo "<h4>Observar Planilla y Enviar a Corregir</h4>";
+                                echo "<div class='p-5 border bg-light'>";
+                                echo "<div class='form-floating'>";
+                                echo "<label for='observa'>Observación</label><textarea class='form-control' name='observa' id='observa' style='width: 70%'></textarea>";
+                                echo "</div>";
+                                echo "</div>";
+                                break;
+                            case 6:
+                                $opcion = 6;
+                                echo "<div class='oculto'> opcion: <input id='opcion2' name='opcion2' type='text' value=" . $opcion . "></div>";
+                                echo "<h4>Observar Planilla y Enviar a Corregir</h4>";
+                                echo "<div class='p-5 border bg-light'>";
+                                echo "<div class='form-floating'>";
+                                echo "<label for='observa'>Observación</label><textarea class='form-control' name='observa' id='observa' style='width: 70%'></textarea>";
+                                echo "</div>";
+                                echo "</div>";
+                                break;
+                            //                                case 5:
+                            //                                case 6:
+                            //                                    $opcion=4;
+                            //                                    echo "opcion: <input id='opcion' name='opcion' type='text' value=".$opcion.">";
+                            //                                    echo "<h3>Aprobado</h3>";
+                            //                                    break;
                         }
 
 

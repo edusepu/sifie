@@ -38,6 +38,7 @@ if($resultado->rowCount() >= 1){
 //    $_SESSION["fundacion"] = $fundacion;
 //    $_SESSION["proyecto"] = $proyecto;
     $_SESSION["tipologin"] = 2;//con usuario de la base de datos
+    $_SESSION["nombre"] = $usuario;
 
 }else{
     //$_SESSION["s_usuario"] = null;

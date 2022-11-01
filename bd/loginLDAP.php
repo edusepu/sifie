@@ -36,7 +36,10 @@ if (isset($_POST['usuario'])) {
 if (isset($_POST['password'])) {
     $password = $_POST['password'];
 }
+//$usuario = 'sepulveda';
 
+//$user = 'est\\sepulveda';
+//$password = '123456789';
 // Establecer la conexión con el servidor LDAP
 $ad = ldap_connect($host, $port) or die("No se pudo conectar al servidor LDAP.");
 
@@ -51,6 +54,21 @@ if (@ldap_bind($ad, $user, $password)) {
     // En caso de éxito, recuperar los datos del usuario
     $result = ldap_search($ad, $basedn, "(sAMAccountName={$usuario})", $searchAttr);
     $entries = ldap_get_entries($ad, $result);
+//var_dump($entries);
+//echo "//////////////";
+    //var_dump(ldap_explode_dn($ad,0));
+
+    foreach($entries[0] as $datos3=>$d)
+    {
+        foreach($d as $dato=>$jugador)
+        {
+            $nombre = $jugador;//exit;
+        }
+        //echo "<br>";
+        break;
+    }
+   // echo $nombre;
+   // echo "<br>";
 
     $pass = $password;//md5($password); //encripto la clave enviada por el usuario para compararla con la clava encriptada y almacenada en la BD
    // $usuario="administrador";
@@ -83,6 +101,7 @@ if (@ldap_bind($ad, $user, $password)) {
         $_SESSION["fundacion"] = $fundacion;
         $_SESSION["proyecto"] = $proyecto;
         $_SESSION["tipologin"] = 1;//con usuario de dominio
+        $_SESSION["nombre"] = $nombre;
     }else{
         $_SESSION["s_usuario"] = null;
         $_SESSION["g_usuario"] = null;

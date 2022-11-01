@@ -1,6 +1,6 @@
 <?php
 session_start();
-    var_dump($_SESSION);
+ //   var_dump($_SESSION);
 if($_SESSION["g_usuario"] === null){
       header("Location: login.php");
 }
@@ -17,7 +17,7 @@ if($_SESSION["g_usuario"] === null){
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-    <title>Sistema de Efectos</title>
+    <title>Guardia</title>
     <link rel="shortcut icon" href="../imagenes/icono.ico">
 
   <!-- Custom fonts for this template-->
@@ -244,7 +244,7 @@ if($_SESSION["g_usuario"] === null){
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["g_usuario"];?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION["nombre"];?></span>
 <!--                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">-->
                 <img class="img-profile rounded-circle" src="img/user.png">
               </a>

@@ -12,13 +12,13 @@ include("bd/crearPlanillas.php");
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 $fecha = date('Y-m-d', time());
 $fechaP = date('Y-m-d', time());
-var_dump($_POST);
+//var_dump($_POST);
 if(isset($_POST['fechaP'])){
-    echo "hay post";
+   // echo "hay post";
     $fechaP = $_POST['fechaP'];
     $fecha = $_POST['fechaP'];
 }else{
-    echo "no hay";
+   // echo "no hay";
 }
 
 $fechaformateada=date('d-m-Y', strtotime($fechaP));
@@ -63,9 +63,9 @@ echo "<h2>SERVICIO DE GUARDIA DE FECHA $fechaformateada</h2>";
 //echo $estados[0][0];
     //}
 
-    $domain = getenv('USERDOMAIN');
+ //   $domain = getenv('USERDOMAIN');
     //  echo "usu  dominio: ".$domain;
-    $user = shell_exec("echo %username%");
+   // $user = shell_exec("echo %username%");
     // echo "<br>user : $user";
 
     ?>
@@ -88,10 +88,10 @@ echo "<h2>SERVICIO DE GUARDIA DE FECHA $fechaformateada</h2>";
 
                             <input type="date" id="fechaP" name="fechaP" value="<?php echo $fechaP;?>">
                         <?php
-                            echo $fechaP."////";
-                            echo strtotime($fechaP);
+                          //  echo $fechaP."////";
+                          //  echo strtotime($fechaP);
                             $date = date('d-m-Y H:i:s', strtotime($fechaP));
-                            echo $date;
+                         //   echo $date;
                         ?>
                     </div>
                     <div class="col-md-4">

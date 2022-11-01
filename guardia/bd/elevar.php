@@ -14,6 +14,7 @@ echo "<br>nroPlanilla: ". $idPlanilla;
 //$opcion=1;
 $estado = (isset($_POST['estado'])) ? $_POST['estado'] : '';
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
+$cer = (isset($_POST['cer'])) ? $_POST['cer'] : '';
 
 $idPlanilla = (isset($_POST['idPlanilla'])) ? $_POST['idPlanilla'] : '';
 $aux = (isset($_POST['aux'])) ? $_POST['gradoAux']." ".$_POST['aux'] : '';
@@ -41,23 +42,39 @@ switch ($opcion) {
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 4: //Elevar al Vicedecano
-        $consulta = "UPDATE registroplanillas SET estado=5 WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
+        $consulta = "UPDATE registroplanillas SET estado=5, observacion='' WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
-    case 5: //Elevar al Decano
-        $consulta = "UPDATE registroplanillas SET estado=6 WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
+    case 5: //ELEVAR AL DECANO
+        $consulta = "UPDATE registroplanillas SET estado=6, observacion='' WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
+
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
-    case 6: //Elevar al Decano
-        $consulta = "UPDATE registroplanillas SET estado=10 WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
+    case 6: //Finalizar
+        $consulta = "UPDATE registroplanillas SET estado=10, observacion='DECANO DE LA FIE' WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
+}
+switch ($cer) {
+    case 5:
+        $consulta = "UPDATE registroplanillas SET estado=10, observacion='VICEDECANO DE LA FIE' WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+    case 6: //Finalizar
+        $consulta = "UPDATE registroplanillas SET estado=10, observacion='DECANO DE LA FIE' WHERE idPlanilla='$idPlanilla' and fecha='$fechaElevar' ";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        break;
+
 }
 
 print json_encode($data, JSON_UNESCAPED_UNICODE); //enviar el array final en formato json a JS
