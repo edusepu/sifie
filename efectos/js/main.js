@@ -27,11 +27,7 @@ $(document).ready(function () {
     };
     tablaPersonas = $("#tablaPersonas").DataTable(
          {
-
         "order": [[ 0, "desc" ]],
-
-
-
              "dom": '<"dt-buttons"Bf><"clear">lirtp',
              "buttons": [
                  {

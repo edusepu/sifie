@@ -25,7 +25,7 @@ if ($_SESSION["g_usuario"] === null) {
         $conexion = $objeto->Conectar();
 
 
-        $consulta = "SELECT * FROM estadoplanilla WHERE id=(SELECT estado FROM registroplanillas where fecha='$fecha' and idPlanilla=1)";
+        $consulta = "SELECT * FROM estadoplanilla WHERE id=(SELECT estado FROM registroplanillas where fecha='$fecha' and idPlanilla=2)";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -35,7 +35,7 @@ if ($_SESSION["g_usuario"] === null) {
 
         }
 
-        $consulta = "SELECT auxGu,jGu,ofSer,observacion FROM registroplanillas where fecha='$fecha' and idPlanilla=1";
+        $consulta = "SELECT auxGu,jGu,ofSer,observacion FROM registroplanillas where fecha='$fecha' and idPlanilla=2";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -51,22 +51,22 @@ if ($_SESSION["g_usuario"] === null) {
         <div class="container shadow-lg p-3 mb-5 bg-body rounded">
             <?php echo "<H1 class='display-5' style=''>SERVICIO DE GUARDIA DE LA FECHA $fechaP</H1>"; ?>
             <hr class="my-4">
-            <h3 style=''>REGISTRO DE MOVIMIENTOS DE VEHICULOS OFICIALES</h3>
+            <h3 style=''>REGISTRO DE PERSONAL/VEHÍCULOS AJENOS AL INSTITUTO POR CABILDO 45</h3>
         </div>
     </div>
     <?php
 
-    $consulta = "SELECT * FROM vehiculos";
-    $resultado = $conexion->prepare($consulta);
-    $resultado->execute();
-    $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
-    $vehiculos = array();
-    foreach ($data as $row => $link) {
-        $vehiculos[$row] = $link['tipo'] . " - " . $link['ni'];
+    //    $consulta = "SELECT * FROM vehiculos";
+    //    $resultado = $conexion->prepare($consulta);
+    //    $resultado->execute();
+    //    $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
+    //    $vehiculos = array();
+    //    foreach ($data as $row => $link) {
+    //        $vehiculos[$row] = $link['tipo'] . " - " . $link['ni'];
+    //
+    //    }
 
-    }
-
-    $consulta = "SELECT id, lugar, horaSalida, horaEntrada, destino, (select concat(tipo, ' ', ni) from vehiculos where id=vehiculo) as vehiculo, conductor, kmSalida,kmEntrada,observacion FROM movimientosvo where fecha='$fecha'";
+    $consulta = "SELECT * FROM persajeno where fecha='$fecha'";
     $resultado = $conexion->prepare($consulta);
     $resultado->execute();
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
@@ -74,136 +74,136 @@ if ($_SESSION["g_usuario"] === null) {
     ?>
     <div class="container shadow-lg p-3 mb-5 bg-body rounded">
 
-    <div class="container">
-        <?php
-        if (!empty($obs)) {
-            echo "<h5>Observación: </h5><div class='alert alert-danger' role='alert'>";
-            echo "Observado por " . $obs;
-            echo "</div>";
-        }
-        ?>
+        <div class="container">
+            <?php
+            if (!empty($obs)) {
+                echo "<h5>Observación: </h5><div class='alert alert-danger' role='alert'>";
+                echo "Observado por " . $obs;
+                echo "</div>";
+            }
+            ?>
 
-        <div class="row">
-            <div class="col-md-3">
-            </div>
-            <div class="col-md-3">
-                <h4>ESTADO ACTUAL:</h4>
-            </div>
-            <div class="col-md-6">
-                <h4 class="text-success"> <?php echo $estadoDesc; ?></h4>
-            </div>
-        </div>
-        <div class="row">
-        </div>
-
-    </div>
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <?php
-                        if ($estado == $rol) {
-                            if ($rol == 5 || $rol == 6 || $rol == 4) {
-                            } else {
-                                echo "<button id='btnNuevo' name='btnNuevo' type='button' class='btn btn-primary' data-toggle='modal'>Nuevo</button>";
-                            }
-                        }
-                        ?>
-                    </div>
-                    <div class="col-md-3"></div>
-
-                    <div class="col-md-3">
-                        <?php
-                        if ($estado == $rol) {
-                            if ($estado == 1) {
-
-                            } else {
-
-                                echo "<button id='btnObservar' name='btnObservar' type='button' class='btn btn-danger' data-toggle='modal'>Observar</button>";
-
-
-                            }
-
-                            echo "<button id='btnCerrar' name='btnCerrar' type='button' class='btn btn-success' data-toggle='modal'>Elevar Planilla</button>";
-                        }
-                        ?>
-                    </div>
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-3">
+                    <h4>ESTADO ACTUAL:</h4>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-success"> <?php echo $estadoDesc; ?></h4>
                 </div>
             </div>
+            <div class="row">
+            </div>
+
         </div>
-    </div>
-
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="table-responsive">
-                    <table id="tablaPersonas" class="display compact table-striped table-bordered table-condensed"
-                           style="width:100%; line-height: 1;">
-                        <thead class="text-center" style="height: 50px;">
-                        <tr>
-                            <th class="oculto">Id</th>
-                            <th>Lugar de presentación</th>
-                            <th>Hora de Salida</th>
-                            <th>Hora de Entrada</th>
-                            <th>Destino</th>
-                            <th>Vehículo</th>
-                            <th>Conductor</th>
-                            <th>KM de Salida</th>
-                            <th>KM de Entrada</th>
-                            <th>Observaciones</th>
 
 
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-6">
                             <?php
-                            //if ($estado == $rol) {
-                            echo "<th>Acciones</th>";
-                            //} ?>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $e = 0;
-                        foreach ($data as $dat) {
+                            if ($estado == $rol) {
+                                if ($rol == 5 || $rol == 6 || $rol == 4) {
+                                } else {
+                                    echo "<button id='btnNuevo' name='btnNuevo' type='button' class='btn btn-primary' data-toggle='modal'>Nuevo</button>";
+                                }
+                            }
                             ?>
-                            <tr>
-                                <td class="oculto"><?php echo $dat['id'] ?></td>
-                                <td><?php echo $dat['lugar'] ?></td>
-                                <td><?php echo $dat['horaSalida'] ?></td>
-                                <td><?php echo $dat['horaEntrada'] ?></td>
-                                <td class=""><?php echo $dat['destino'] ?></td>
-                                <td class=""><?php echo $dat['vehiculo'] ?></td>
-                                <td class=""><?php echo $dat['conductor'] ?></td>
-                                <td class=""><?php echo $dat['kmSalida'] ?></td>
-                                <td class=""><?php echo $dat['kmEntrada'] ?></td>
-                                <td class=""><?php echo $dat['observacion'] ?></td>
-                                <?php
-                                if ($estado == $rol) {
-                                    if ($rol == 5 || $rol == 6 || $rol == 4) {
-                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD btn-sm' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD btn-sm' disabled>ELIMINAR</button></div></div></td>";
+                        </div>
+                        <div class="col-md-3"></div>
 
-                                    } else {
-                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar btn-sm'>EDITAR</button><button class='btn btn-danger btnBorrar btn-sm'>ELIMINAR</button></div></div></td>";
-
-                                    }
+                        <div class="col-md-3">
+                            <?php
+                            if ($estado == $rol) {
+                                if ($estado == 1) {
 
                                 } else {
-                                    echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD btn-sm' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD btn-sm' disabled>ELIMINAR</button></div></div></td>";
-                                } ?>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                        </tbody>
 
-                    </table>
+                                    echo "<button id='btnObservar' name='btnObservar' type='button' class='btn btn-danger' data-toggle='modal'>Observar</button>";
+
+
+                                }
+
+                                echo "<button id='btnCerrar' name='btnCerrar' type='button' class='btn btn-success' data-toggle='modal'>Elevar Planilla</button>";
+                            }
+                            ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table id="tablaPersonas" class="display compact table-striped table-bordered table-condensed"
+                               style="width:100%; line-height: 1;">
+                            <thead class="text-center" style="height: 50px;">
+                            <tr>
+                                <th class="oculto">Id</th>
+                                <th>Grado</th>
+                                <th>Apellido y Nombre</th>
+                                <th>DNI</th>
+                                <th>Marca-Modelo</th>
+                                <th>Dominio</th>
+                                <th>Ingreso</th>
+                                <th>Egreso</th>
+                                <th>Visitó a</th>
+                                <th>Observaciones</th>
+
+
+                                <?php
+                                //if ($estado == $rol) {
+                                echo "<th>Acciones</th>";
+                                //} ?>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $e = 0;
+                            foreach ($data as $dat) {
+                                ?>
+                                <tr>
+                                    <td class="oculto"><?php echo $dat['id'] ?></td>
+                                    <td><?php echo $dat['grado'] ?></td>
+                                    <td><?php echo $dat['nombre'] ?></td>
+                                    <td><?php echo $dat['dni'] ?></td>
+                                    <td class=""><?php echo $dat['marca'] ?></td>
+                                    <td class=""><?php echo $dat['dominio'] ?></td>
+                                    <td class=""><?php echo $dat['ingreso'] ?></td>
+                                    <td class=""><?php echo $dat['egreso'] ?></td>
+                                    <td class=""><?php echo $dat['visito'] ?></td>
+                                    <td class=""><?php echo $dat['obs'] ?></td>
+                                    <?php
+                                    if ($estado == $rol) {
+                                        if ($rol == 5 || $rol == 6 || $rol == 4) {
+                                            echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD btn-sm' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD btn-sm' disabled>ELIMINAR</button></div></div></td>";
+
+                                        } else {
+                                            echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar btn-sm'>EDITAR</button><button class='btn btn-danger btnBorrar btn-sm'>ELIMINAR</button></div></div></td>";
+
+                                        }
+
+                                    } else {
+                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD btn-sm' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD btn-sm' disabled>ELIMINAR</button></div></div></td>";
+                                    } ?>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -223,7 +223,7 @@ if ($_SESSION["g_usuario"] === null) {
                     <div class="modal-body">
                         <div class="row oculto">
                             idplanilla:
-                            <input id="idPlanilla" name="idPlanilla" type="text" value="1">
+                            <input id="idPlanilla" name="idPlanilla" type="text" value="2">
                         </div>
 
                         <div class="row oculto">
@@ -443,7 +443,7 @@ if ($_SESSION["g_usuario"] === null) {
             </div>
         </div>
     </div>
-    <!--modal para OBSERVAR PLANILLA-->
+
     <!--Modal para CRUD-->
     <div class="modal fade" id="modalCRUD" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -465,45 +465,38 @@ if ($_SESSION["g_usuario"] === null) {
 
                         </div>
                         <div class="form-group">
-                            <label for="lugar" class="col-form-label">Lugar de Presentación:</label>
-                            <input type="text" class="form-control" id="lugar" name="lugar" required>
+                            <label for="grado" class="col-form-label">Grado:</label>
+                            <input type="text" class="form-control" id="grado" name="grado">
                         </div>
                         <div class="form-group">
-                            <label for="salida" class="col-form-label">Hora de Salida:</label>
-                            <input type="time" class="form-control" id="salida" required>
+                            <label for="nombre" class="col-form-label">Apellido y Nombre</label>
+                            <input type="input" class="form-control" id="nombre" required>
                         </div>
                         <div class="form-group">
-                            <label for="entrada" class="col-form-label">Hora de Entrada:</label>
-                            <input type="time" class="form-control" id="entrada" required>
+                            <label for="dni" class="col-form-label">DNI</label>
+                            <input type="input" class="form-control" id="dni" required>
                         </div>
                         <div class="form-group">
-                            <label for="destino" class="col-form-label">Destino:</label>
-                            <input type="text" class="form-control" id="destino">
+                            <label for="marca" class="col-form-label">Marca-Modelo</label>
+                            <input type="text" class="form-control" id="marca">
                         </div>
 
                         <div class="form-group">
-                            <label for="vehiculo" class="col-form-label">Vehículo:</label>
-                            <select class="form-control" id="vehiculo" name="vehiculo">
-                                <?php
-                                $i = 1;
-                                foreach ($vehiculos as $valor) {
-                                    echo "<option value='$i'>$valor</option>";
-                                    $i++;
-                                }
-                                ?>
-                            </select>
+                            <label for="dominio" class="col-form-label">Dominio</label>
+                            <input type="text" class="form-control" id="dominio">
+
                         </div>
                         <div class="form-group">
-                            <label for="conductor" class="col-form-label">Conductor:</label>
-                            <input type="text" class="form-control" id="conductor">
+                            <label for="ingreso" class="col-form-label">Ingreso</label>
+                            <input type="time" class="form-control" id="ingreso">
                         </div>
                         <div class="form-group">
-                            <label for="kmsalida" class="col-form-label">KM de Salida:</label>
-                            <input type="number" class="form-control" id="kmsalida">
+                            <label for="egreso" class="col-form-label">Egreso</label>
+                            <input type="time" class="form-control" id="egreso">
                         </div>
                         <div class="form-group">
-                            <label for="kmentrada" class="col-form-label">KM de Entrada:</label>
-                            <input type="number" class="form-control" id="kmentrada">
+                            <label for="visito" class="col-form-label">Visitó a:</label>
+                            <input type="text" class="form-control" name="visito" id="visito">
                         </div>
                         <div class="form-group">
                             <label for="obs" class="col-form-label">Observación:</label>
@@ -522,5 +515,5 @@ if ($_SESSION["g_usuario"] === null) {
 
     <!--FIN del cont principal-->
     <?php require_once "vistas/parte_inferior.php" ?>
-    <script type="text/javascript" src="js/1.js"></script>
+    <script type="text/javascript" src="js/2.js"></script>
 

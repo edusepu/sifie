@@ -5,44 +5,44 @@ $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 // Recepción de los datos enviados mediante POST desde el JS   
 
-$lugar = (isset($_POST['lugar'])) ? $_POST['lugar'] : '';
-$salida = (isset($_POST['salida'])) ? $_POST['salida'] : '';
-$entrada = (isset($_POST['entrada'])) ? $_POST['entrada'] : '';
-$destino = (isset($_POST['destino'])) ? $_POST['destino'] : '';
-$vehiculo = (isset($_POST['vehiculo'])) ? $_POST['vehiculo'] : '';
-$conductor = (isset($_POST['conductor'])) ? $_POST['conductor'] : '';
-$kmsalida = (isset($_POST['kmsalida'])) ? $_POST['kmsalida'] : '';
-$kmentrada = (isset($_POST['kmentrada'])) ? $_POST['kmentrada'] : '';
+$grado = (isset($_POST['grado'])) ? $_POST['grado'] : '';
+$nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : '';
+$dni = (isset($_POST['dni'])) ? $_POST['dni'] : '';
+$marca = (isset($_POST['marca'])) ? $_POST['marca'] : '';
+$dominio = (isset($_POST['dominio'])) ? $_POST['dominio'] : '';
+$ingreso = (isset($_POST['ingreso'])) ? $_POST['ingreso'] : '';
+$egreso = (isset($_POST['egreso'])) ? $_POST['egreso'] : '';
+$visito = (isset($_POST['visito'])) ? $_POST['visito'] : '';
 $obs = (isset($_POST['obs'])) ? $_POST['obs'] : '';
 $oldDate = strtotime($_POST['fecha']);
 $fecha = date('Y-m-d',$oldDate);
 
 $opcion = (isset($_POST['opcion'])) ? $_POST['opcion'] : '';
 $id = (isset($_POST['id'])) ? $_POST['id'] : '';
-
+//$opcion = 1;
 switch ($opcion) {
     case 1: //alta
-        $consulta = "INSERT INTO movimientosvo (lugar, horaSalida, horaEntrada, destino, vehiculo, conductor, kmSalida,kmEntrada,observacion, fecha) VALUES('$lugar', '$salida', '$entrada', '$destino', '$vehiculo', '$conductor', '$kmsalida', '$kmentrada', '$obs', '$fecha') ";
+        $consulta = "INSERT INTO persajeno (grado, nombre, dni, marca, dominio, ingreso, egreso,visito,obs, fecha) VALUES('$grado', '$nombre', '$dni', '$marca', '$dominio', '$ingreso', '$egreso', '$visito', '$obs', '$fecha') ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
 
-        $consulta = "SELECT id, lugar, horaSalida, horaEntrada, destino, (select tipo from vehiculos where id=vehiculo) as vehiculo, conductor, kmSalida,kmEntrada,observacion FROM movimientosvo ORDER BY id DESC LIMIT 1";
+        $consulta = "SELECT id, grado, nombre, dni, marca, dominio, ingreso, egreso,visito,obs FROM persajeno ORDER BY id DESC LIMIT 1";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 2: //modificación
-        $consulta = "UPDATE movimientosvo SET lugar='$lugar', horaSalida='$salida', horaEntrada='$entrada', destino='$destino', vehiculo='$vehiculo', conductor='$conductor', kmSalida='$kmsalida',  kmEntrada='$kmentrada', observacion='$obs' WHERE id='$id' ";
+        $consulta = "UPDATE persajeno SET grado='$grado', nombre='$nombre', dni='$dni', marca='$marca', dominio='$dominio', ingreso='$ingreso', egreso='$egreso',  visito='$visito', obs='$obs' WHERE id='$id' ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
 
-        $consulta = "SELECT id, lugar, horaSalida, horaEntrada, destino, (select tipo from vehiculos where id=vehiculo) as vehiculo, conductor, kmSalida,kmEntrada,observacion FROM movimientosvo WHERE id='$id'";
+        $consulta = "SELECT id, grado, nombre, dni, marca, dominio, ingreso, egreso,visito,obs FROM persajeno  WHERE id='$id'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
     case 3: //baja
-        $consulta = "DELETE FROM movimientosvo WHERE id='$id' ";
+        $consulta = "DELETE FROM persajeno WHERE id='$id' ";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
 //        $consulta = "SELECT id, lugar, horaSalida, horaEntrada, destino, (select tipo from vehiculos where id=vehiculo) as vehiculo, conductor, kmSalida,kmEntrada,observacion FROM movimientosvo WHERE id='$id'";
