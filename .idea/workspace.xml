@@ -2,21 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed546dbe-d298-41be-9f3d-6e7deb4c7a75" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/guardia/2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guardia/bd/crud2.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guardia/js/1viejo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guardia/js/2.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guardia/vendor/datatables/pdfmake.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/efectos/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guardia/1.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guardia/css/sb-admin-2.css" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/css/sb-admin-2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guardia/img/5ta InfoConf Cronograma.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guardia/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guardia/js/1.js" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/js/1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guardia/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guardia/vistas/parte_inferior.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/vistas/parte_inferior.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guardia/vistas/parte_superior.php" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/vistas/parte_superior.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guardia/js/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/guardia/js/2.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +61,7 @@
       <workItem from="1665587394845" duration="8565000" />
       <workItem from="1666183663702" duration="19836000" />
       <workItem from="1666614543297" duration="92188000" />
-      <workItem from="1668516532076" duration="16552000" />
+      <workItem from="1668516532076" duration="17251000" />
     </task>
     <servers />
   </component>

@@ -61,7 +61,7 @@ $(document).ready(function () {
                             columns: [{
 
                                 text: 'PLANILLA DE REGISTRO DE PERSONAL/VEHÍCULOS AJENOS AL INSTITUTO POR CABILDO 45 \n ' +
-                                    'Servicio de Guardia del día ' + dia + ' al ' + (dia + 1) + ' de ' + mes + ' de ' + anio + '\n\n',
+                                    'Servicio de Guardia del día ' + dia + ' de ' + mes + ' de ' + anio + '\n\n',
                                 fontSize: 13,
                                 decoration: 'underline',
                                 alignment: 'center',
@@ -70,9 +70,9 @@ $(document).ready(function () {
                         },{
                             columns: [{
 
-                                text: 'OFICIAL DE SERVICIO: \t'+ auxGu +
+                                text: 'OFICIAL DE SERVICIO: \t'+ ofSer +
                                     '\nJEFE DE GUARDIA: \t' + jGu +
-                                '\nAUXILIAR DE GUARDIA: \t' + ofSer+ '\n\n',
+                                '\nAUXILIAR DE GUARDIA: \t' + auxGu+ '\n\n',
                                 fontSize: 13,
 
                                 alignment: 'left',
