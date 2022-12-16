@@ -3,7 +3,7 @@
 //var_dump($_POST);
 //exit;
 //include_once '../bdF/conexion.php';
-include_once '../../bd/conexion.php';
+include_once '../../../bd/conexion.php';
 
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
