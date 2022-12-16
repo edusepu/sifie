@@ -3,7 +3,7 @@ session_start();
 
 if (isset($_SESSION["s_usuario"])) {
 } else {
-    header("Location: ../index.php?id=" . $_GET['id']);
+    header("Location: ../../index.php?id=" . $_GET['id']);
 }
 
 include_once '../bd/conexion.php';

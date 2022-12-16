@@ -9,7 +9,7 @@ if (isset($_SESSION["s_usuario"])) {
     // $_SESSION["s_usuario"]="s";
     //header("Location: ../index.php?id=".$_GET['id']);
 } else {
-       var_dump($_GET);
+    //   var_dump($_GET);
     header("Location: ../../index.php?id=" . $_GET['id']);
     //   echo "no session";
 }
