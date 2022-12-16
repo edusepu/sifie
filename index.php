@@ -40,7 +40,7 @@ if($_SESSION["s_usuario"] === null){
                     <div class="wrap-login-form-btn">
                         <div class="login-form-bgbtn"></div>
 <!--                        <button class="btn btn-lg btn-primary btn-block" type="submit">Inxgresar</button>-->
-                        <a class='btn btn-success' href='efectos' role='button'>SISTEMA DE EFECTOS</a>
+                        <a class='btn btn-success' href='efectos/efectos' role='button'>SISTEMA DE EFECTOS</a>
 
                         <a class='btn btn-success' href='guardia' role='button'>GUARDIA</a>
 
