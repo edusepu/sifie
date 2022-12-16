@@ -4,7 +4,7 @@ $(document).ready(function () {
         "columnDefs": [{
             "targets": -1,
             "data": null,
-            "defaultContent": "<div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../img/ubicacion.png'></a><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>"
+            "defaultContent": "<div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../../img/ubicacion.png'></a><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div>"
         }
         ],
 
@@ -130,19 +130,19 @@ $(document).ready(function () {
                 //proyecto = data[0].proyecto;
 
                 if(data[0].fundacion==1){
-                    fundacion ="<div style='text-align:center;'><div class='oculto'>"+fundacion+"</div><img style='height: 30px;' src='../img/check.png'></div>";
+                    fundacion ="<div style='text-align:center;'><div class='oculto'>"+fundacion+"</div><img style='height: 30px;' src='../../img/check.png'></div>";
                 }else{
-                    fundacion ="<div style='text-align:center;'><div class='oculto'>"+fundacion+"</div><img style='height: 30px;' src='../img/cross.png'></div>";
+                    fundacion ="<div style='text-align:center;'><div class='oculto'>"+fundacion+"</div><img style='height: 30px;' src='../../img/cross.png'></div>";
                 }
                 if(data[0].cargos==1){
-                    cargos ="<div style='text-align:center;'><div class='oculto'>"+cargos+"</div><img style='height: 30px;' src='../img/check.png'></div>";
+                    cargos ="<div style='text-align:center;'><div class='oculto'>"+cargos+"</div><img style='height: 30px;' src='../../img/check.png'></div>";
                 }else{
-                    cargos ="<div style='text-align:center;'><div class='oculto'>"+cargos+"</div><img style='height: 30px;' src='../img/cross.png'></div>";
+                    cargos ="<div style='text-align:center;'><div class='oculto'>"+cargos+"</div><img style='height: 30px;' src='../../img/cross.png'></div>";
                 }
                 if(data[0].proyecto==1){
-                    proyecto ="<div style='text-align:center;'><div class='oculto'>"+proyecto+"</div><img style='height: 30px;' src='../img/check.png'></div>";
+                    proyecto ="<div style='text-align:center;'><div class='oculto'>"+proyecto+"</div><img style='height: 30px;' src='../../img/check.png'></div>";
                 }else{
-                    proyecto ="<div style='text-align:center;'><div class='oculto'>"+proyecto+"</div><img style='height: 30px;' src='../img/cross.png'></div>";
+                    proyecto ="<div style='text-align:center;'><div class='oculto'>"+proyecto+"</div><img style='height: 30px;' src='../../img/cross.png'></div>";
                 }
 
 

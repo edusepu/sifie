@@ -321,7 +321,7 @@ $(document).ready(function () {
                 monitorNombre = data[0].monitorNombre;
 
 
-                acciones = "<div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../img/ubicacion.png'></a><a id='detalle' class='oculto' class='btnQR' style=' height: 38px;' src='../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle' >Detalle</button><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button> </div></div>";
+                acciones = "<div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../../img/ubicacion.png'></a><a id='detalle' class='oculto' class='btnQR' style=' height: 38px;' src='../../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle' >Detalle</button><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button> </div></div>";
                 if (opcion == 1) {
                     tablaPersonas.order([0, 'desc']).draw();
                     tablaPersonas.row.add([id, NNE, INE, NI, dpto, "", "", "", "", "", "", "", "", "", ubicacion, "",dptoNombre, "","","",acciones]).draw();
@@ -369,7 +369,7 @@ $(document).ready(function () {
         usuariopc = $.trim($("#usuariopc").val());
         monitor = $.trim($("#monitor").val());
         monitorNombre = $.trim($("#monitorNombre").val());
-        acciones = "<div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../img/ubicacion.png'></a><a id='detalle' class='oculto' class='btnQR' style=' height: 38px;' src='../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button> </div></div>";
+        acciones = "<div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../../img/ubicacion.png'></a><a id='detalle' class='oculto' class='btnQR' style=' height: 38px;' src='../../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button> </div></div>";
 
         //ubicacion = $.trim($("#ubicacion").val());
 

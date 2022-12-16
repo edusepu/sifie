@@ -12,7 +12,7 @@ include("sinpermiso.php");
     <h1>Usuarios</h1>
 
     <?php
-    include_once '../bd/conexion.php';
+    include_once '../../bd/conexion.php';
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 
