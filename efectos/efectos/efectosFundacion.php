@@ -21,7 +21,7 @@ if ($_SESSION["s_rol"] == 1) {
     <h1>Efectos de Fundación</h1>
     <?php
    // include_once 'bdF/conexion.php';
-    include_once '../bd/conexion.php';
+    include_once '../../bd/conexion.php';
 
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
@@ -71,7 +71,7 @@ FROM fundacion LEFT JOIN detalleFundacion ON fundacion.id=detalleFundacion.idDet
                             </label>
                         </div>
                         <div class="">
-                            <img id='btnQR' data-toggle='modal' class="detalle" style=" height: 50px; cursor: pointer;" src="img/qr.png"
+                            <img id='btnQR' data-toggle='modal' class="detalle" style=" height: 50px; cursor: pointer;" src="../../img/qr.png"
                                  href="">
                         </div>
                     </div>
@@ -140,9 +140,9 @@ FROM fundacion LEFT JOIN detalleFundacion ON fundacion.id=detalleFundacion.idDet
                                 <td class=""><?php echo $dat['monitorNombre'] ?></td>
                                 <?php
                                 if ($_SESSION["s_rol"] == 1) {
-                                    echo "<td><div class='text-center'><div class='btn-group'><a class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../img/ubicacion.png'></a><a id='detalle' class='oculto' href='#'><img class='btnQR' style=' height: 38px;' src='../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div></td>";
+                                    echo "<td><div class='text-center'><div class='btn-group'><a class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../../img/ubicacion.png'></a><a id='detalle' class='oculto' href='#'><img class='btnQR' style=' height: 38px;' src='../../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div></td>";
                                 }else{
-                                    echo "<td><div class='text-center'><div class='btn-group'><a class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../img/ubicacion.png'></a><a id='detalle' class='oculto' href='#'><img class='btnQR' style=' height: 38px;' src='../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button></div></div></td>";
+                                    echo "<td><div class='text-center'><div class='btn-group'><a class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../../img/ubicacion.png'></a><a id='detalle' class='oculto' href='#'><img class='btnQR' style=' height: 38px;' src='../../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button></div></div></td>";
 
                                 }?>
 
@@ -291,7 +291,7 @@ FROM fundacion LEFT JOIN detalleFundacion ON fundacion.id=detalleFundacion.idDet
                                 <span>Monitor</span></label>
                             <input type="text" name="monitor" id="monitor">
                             <span>Buscar ID</span>
-                            <img class="btnBuscar" style=" height: 50px;cursor: pointer;" src="../img/lupa.png" >
+                            <img class="btnBuscar" style=" height: 50px;cursor: pointer;" src="../../img/lupa.png" >
 
                             <input type="text" name="monitorNombre" id="monitorNombre" disabled>
                             </input>

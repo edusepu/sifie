@@ -38,7 +38,7 @@ $contadorFilas=1;
 //echo ("cantidad de obleas: ".$inicio+1);echo "<br>";
 echo "<div class='row gx-1 justify-content-center' style='height:7.375cm'>";
 $varia=0;
-    include_once '../bd/conexion.php';
+    include_once '../../bd/conexion.php';
 
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();

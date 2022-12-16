@@ -23,7 +23,7 @@ require_once "vistas/parte_superior.php";
                                         Efectos Regulados
                                     </h2>
 
-                                    <div class="interior-item" style="background: url(../imagenes/1.jpeg);background-size: cover;">
+                                    <div class="interior-item" style="background: url(../../imagenes/1.jpeg);background-size: cover;">
                                         <!-- <img src="../imagenes/logoBlanco.ico"
                                               style="border-radius: 50%; max-height: 60px;">
                                           <img src="imagenes/EST.png" width="50%"> -->
@@ -49,7 +49,7 @@ require_once "vistas/parte_superior.php";
                                         Efectos Fundación
                                     </h2>
                                     </div>
-                                    <div class="interior-item" style="background: url(../imagenes/2.jpeg);background-size: cover;">
+                                    <div class="interior-item" style="background: url(../../imagenes/2.jpeg);background-size: cover;">
                                         <!--<img src="../imagenes/logoBlanco.ico"
                                              style="border-radius: 50%; max-height: 60px;">
                                          <img src="imagenes/EST.png" width="50%"> -->
@@ -74,7 +74,7 @@ require_once "vistas/parte_superior.php";
                                         Efectos de Proyectos
                                     </h2>
                                     </div>
-                                    <div class="interior-item" style="background: url(../imagenes/3.jpeg);background-size: cover;">
+                                    <div class="interior-item" style="background: url(../../imagenes/3.jpeg);background-size: cover;">
                                         <!--<img src="../imagenes/logoBlanco.ico"
                                              style="border-radius: 50%; max-height: 60px;">
                                          <img src="imagenes/EST.png" width="50%"> -->

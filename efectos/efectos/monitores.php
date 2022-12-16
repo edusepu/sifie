@@ -11,7 +11,7 @@ if ($_SESSION["cargos"] != 1) {
 <div class="container">
     <h1>Monitores</h1>
     <?php
-    include_once '../bd/conexion.php';
+    include_once '../../bd/conexion.php';
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 

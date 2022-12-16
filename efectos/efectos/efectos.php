@@ -21,7 +21,7 @@ if ($_SESSION["s_rol"] == 1) {
 <div class="container">
     <h1>Efectos</h1>
     <?php
-    include_once '../bd/conexion.php';
+    include_once '../../bd/conexion.php';
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
 
@@ -70,7 +70,7 @@ FROM efectos LEFT JOIN detallecomputadora ON efectos.id=detallecomputadora.idDet
                             </label>
                         </div>
                         <div class="">
-                            <img id='btnQR' data-toggle='modal' class="detalle" style=" height: 50px; cursor: pointer;" src="img/qr.png"
+                            <img id='btnQR' data-toggle='modal' class="detalle" style=" height: 50px; cursor: pointer;" src="../../img/qr.png"
                                  href="">
 
                         </div>
@@ -154,9 +154,9 @@ FROM efectos LEFT JOIN detallecomputadora ON efectos.id=detallecomputadora.idDet
 
                                 <?php
                                 if ($_SESSION["s_rol"] == 1) {
-                                    echo "<td><div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../img/ubicacion.png'></a><a id='detalle' class='oculto' href='#'><img class='btnQR' style=' height: 38px;' src='../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div></td>";
+                                    echo "<td><div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../../img/ubicacion.png'></a><a id='detalle' class='oculto' href='#'><img class='btnQR' style=' height: 38px;' src='../../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button><button class='btn btn-primary btnEditar'>Editar</button><button class='btn btn-danger btnBorrar'>Borrar</button></div></div></td>";
                                 }else{
-                                    echo "<td><div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../img/ubicacion.png'></a><a id='detalle' class='oculto' href='#'><img class='btnQR' style=' height: 38px;' src='../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button></div></div></td>";
+                                    echo "<td><div class='text-center'><div class='btn-group'><a id='ubicacion' class='oculto' href='#'><img class='btnUbicacion' style=' height: 38px;' src='../../img/ubicacion.png'></a><a id='detalle' class='oculto' href='#'><img class='btnQR' style=' height: 38px;' src='../../img/qr.png'></a><button class='btn btn-dark btnQR' style=''>QR</button><button class='btn btn-info btnDetalle'>Detalle</button></div></div></td>";
 
                                 }?>
                             </tr>
@@ -298,7 +298,7 @@ FROM efectos LEFT JOIN detallecomputadora ON efectos.id=detallecomputadora.idDet
                                 <span>Monitor</span></label>
                             <input type="text" name="monitor" id="monitor">
                             <span>Buscar ID</span>
-                            <img class="btnBuscar" style=" height: 50px;cursor: pointer;" src="../img/lupa.png" >
+                            <img class="btnBuscar" style=" height: 50px;cursor: pointer;" src="../../img/lupa.png" >
 
                             <input type="text" name="monitorNombre" id="monitorNombre" disabled>
                             </input>
