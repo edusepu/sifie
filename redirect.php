@@ -6,7 +6,7 @@ session_start();
 //echo $_GET['id'];
 if(isset($_GET['id'])){
     echo "con id";
-    header("Location: efectos/detalle.php?id=".$_GET['id']);
+    header("Location: efectos/efectos/detalle.php?id=".$_GET['id']);
 }else{
     echo "sin id";
     header("Location: index.php");
