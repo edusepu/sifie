@@ -6,7 +6,7 @@ if (isset($_SESSION["s_usuario"])) {
     header("Location: ../../index.php?id=" . $_GET['id']);
 }
 
-include_once '../bd/conexion.php';
+include_once '../../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 $id = (isset($_GET['id'])) ? $_GET['id'] : '';
