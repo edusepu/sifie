@@ -92,6 +92,8 @@ FROM efectos LEFT JOIN detallecomputadora ON efectos.id=detallecomputadora.idDet
                        // echo "<style>.botonVerde {display: none;}</style>";
                     }
                     ?>
+                    <input size="16" type="text" class="form-control datetime" id="datetime" readonly>
+
                     <table  id="tablaPersonas" class="display compact table-striped table-bordered table-condensed"
                            style="width:100%; line-height: 1;">
                         <thead class="text-center" style="height: 50px;">

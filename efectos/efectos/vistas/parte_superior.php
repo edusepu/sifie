@@ -26,6 +26,8 @@ if ($_SESSION["s_usuario"] === null) {
 
     <!--datables CSS básico-->
     <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--datables estilo bootstrap 4 CSS-->
     <link rel="stylesheet" type="text/css"
           href="vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">

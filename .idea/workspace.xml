@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ed546dbe-d298-41be-9f3d-6e7deb4c7a75" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/efectos/efectos/detalle2.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/detalle2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/efectos/efectos/detalleF.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/detalleF.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/efectos/efectos/detallem.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/detallem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/efectos.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/efectos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/js/mainFundacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/js/mainFundacion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/vistas/parte_inferior.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/vistas/parte_inferior.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/vistas/parte_superior.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/vistas/parte_superior.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,15 +29,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/sifie/guardia/bd&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/sifie",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\sifie\guardia\bd" />
@@ -64,7 +67,11 @@
       <workItem from="1666614543297" duration="92188000" />
       <workItem from="1668516532076" duration="20939000" />
       <workItem from="1671162213445" duration="591000" />
-      <workItem from="1671163257308" duration="2675000" />
+      <workItem from="1671163257308" duration="3280000" />
+      <workItem from="1678286735897" duration="7000" />
+      <workItem from="1679400188981" duration="17000" />
+      <workItem from="1679400476095" duration="5113000" />
+      <workItem from="1684768158702" duration="3133000" />
     </task>
     <servers />
   </component>

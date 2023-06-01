@@ -69,6 +69,9 @@
       <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
 
       <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+      <script src="https://unpkg.com/jquery-datetimepicker@2.5.21/build/jquery.datetimepicker.full.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
       <script type="text/javascript">
       </script>
       

@@ -245,7 +245,7 @@ $(document).ready(function () {
 
         $(".modal-header").css("background-color", "#4e73df");
         $(".modal-header").css("color", "white");
-        $(".modal-title").text("Editar Efecto");
+        $(".modal-title").text("Editar Efecto ID: ");
         $("#modalCRUD").modal("show");
 
     });

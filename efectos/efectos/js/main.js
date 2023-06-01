@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+  
     $.fn.dataTable.ext.buttons.nuevo = {
         className: 'dt-button buttons-pdf buttons-html5',
 
@@ -14,6 +14,13 @@ $(document).ready(function () {
             opcion = 1; //alta
         }
     };
+    console.log("casi");
+    $(function () {
+        $('.datetime').datetimepicker({
+          viewMode: 'years'
+        });
+      });
+   
     $.fn.dataTable.ext.buttons.qr = {
         className: 'dt-button buttons-pdf buttons-html5',
 
