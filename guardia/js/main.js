@@ -5,9 +5,95 @@ $(document).ready(function () {
 
         }
         ],
+        "buttons": [
+            {
+                extend: 'nuevo',
+                text: '<button class="btn-success ocultar" id="botonVerde">Nuevo  <i class="fa-solid fa-plus"></i></button>',
+            },
+            {
+                extend: 'qr',
+                text: '<button class="btn-dark"  data-toggle="modal" id="btnQRNuevo">Imprimir Etiquetas  <i class="fa-solid fa-qrcode"></i></button>',
+            },
+
+            {
+                extend: 'pdfHtml5',
+                text: '<button class="btn-danger">Exportar a PDF <i class="far fa-file-pdf"></i></button>',
+                download: 'open',
+                //className: '',
+                //messageTop: ' ',
+                title:'Listado Efectos Regulados',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                exportOptions: {
+                    columns: [ 0, 1, 2,3, 14,16,17 ],
+                    //  columns: ':visible',
+                    search: 'applied',
+                    order: 'applied'
+                },
+                customize:function(doc) {
+
+                    doc.content.splice(0,1);
+                    var now = new Date();
+                    var jsDate = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
+                    doc.pageMargins = [20,60,20,40];
+                    doc.defaultStyle.fontSize = 9;
+                    doc.styles.tableHeader.fontSize = 10;
+
+                    doc['header']=(function() {
+                        return {
+                            columns: [
+                                {
+                                    //image: logo,
+                                    //width: 24
+                                },
+                                {
+                                    alignment: 'left',
+                                    italics: true,
+                                    text: 'Listado de Efectos Regulados',
+                                    fontSize: 18,
+                                    margin: [10,0]
+                                },
+                                {
+                                    /*  alignment: 'right',
+                                      fontSize: 14,
+                                      text: 'Custom PDF export with dataTables'
+                                  */
+                                }
+
+                            ],
+                            margin: 20
+                        }
+                    });
+
+                    doc['footer']=(function(page, pages) {
+                        return {
+                            columns: [
+                                {
+                                    //  alignment: 'left',
+                                    // text: ['Created on: ', { text: jsDate.toString() }]
+                                },
+                                {
+                                    alignment: 'right',
+                                    text: ['Página ', { text: page.toString() },	' de ',	{ text: pages.toString() }]
+                                }
+                            ],
+                            margin: 20
+                        }
+                    });
+                    var objLayout = {};
+                    objLayout['hLineWidth'] = function(i) { return .5; };
+                    objLayout['vLineWidth'] = function(i) { return .5; };
+                    objLayout['hLineColor'] = function(i) { return '#aaa'; };
+                    objLayout['vLineColor'] = function(i) { return '#aaa'; };
+                    objLayout['paddingLeft'] = function(i) { return 4; };
+                    objLayout['paddingRight'] = function(i) { return 4; };
+                    doc.content[0].layout = objLayout;
+                }
+            }],
         "searching": false,
         "paging": false,
         "info": false,
+
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros",
             "zeroRecords": "No se encontraron resultados",

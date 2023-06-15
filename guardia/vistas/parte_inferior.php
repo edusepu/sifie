@@ -4,11 +4,11 @@
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto no-seleccionable">
-            <span tooltip="Sepu" title="Sepu">Copyright &copy; Facultad de Ingeniería del Ejército 2022</span>
+          <div class="container my-auto">
+              <div class="copyright text-center my-auto no-seleccionable">
+                  <span tooltip="Sepu" title="Sepu">Copyright &copy; Facultad de Ingeniería del Ejército 2022</span>
+              </div>
           </div>
-        </div>
       </footer>
       <!-- End of Footer -->
 
@@ -59,7 +59,16 @@
 
   
     <!-- datatables JS -->
-    <script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>
+      <script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>
+
+      <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+
+      <script src="vendor/datatables/pdfmake.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+      <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+
+      <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 
       </body>
 

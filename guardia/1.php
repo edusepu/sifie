@@ -11,7 +11,7 @@ if ($_SESSION["g_usuario"] === null) {
 
 
 <!--INICIO del cont principal  -->
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom:1rem;background: #F8F9FC;width: 90%">
     <div class="">
         <?php
         $fechaP = date('d-m-Y', $_GET['id']);
@@ -35,17 +35,20 @@ if ($_SESSION["g_usuario"] === null) {
 
         }
 
-        $consulta = "SELECT observacion FROM registroplanillas where fecha='$fecha' and idPlanilla=1";
+        $consulta = "SELECT auxGu,jGu,ofSer,observacion FROM registroplanillas where fecha='$fecha' and idPlanilla=1";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
         foreach ($data as $row => $link) {
             $obs = $link['observacion'];
+            $auxGu = $link['auxGu'];
+            $jGu = $link['jGu'];
+            $ofSer = $link['ofSer'];
         }
         ?>
     </div>
-    <div class="jumbotron">
-        <div class="container">
+    <div class="jumbotron" style="padding: 1rem 1rem; background: #F8F9FC;">
+        <div class="container shadow-lg p-3 mb-5 bg-body rounded">
             <?php echo "<H1 class='display-5' style=''>SERVICIO DE GUARDIA DE LA FECHA $fechaP</H1>"; ?>
             <hr class="my-4">
             <h3 style=''>REGISTRO DE MOVIMIENTOS DE VEHICULOS OFICIALES</h3>
@@ -63,12 +66,13 @@ if ($_SESSION["g_usuario"] === null) {
 
     }
 
-    $consulta = "SELECT id, lugar, horaSalida, horaEntrada, destino, (select tipo from vehiculos where id=vehiculo) as vehiculo, conductor, kmSalida,kmEntrada,observacion FROM movimientosvo where fecha='$fecha'";
+    $consulta = "SELECT id, lugar, horaSalida, horaEntrada, destino, (select concat(tipo, ' ', ni) from vehiculos where id=vehiculo) as vehiculo, conductor, kmSalida,kmEntrada,observacion FROM movimientosvo where fecha='$fecha'";
     $resultado = $conexion->prepare($consulta);
     $resultado->execute();
     $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
     ?>
+    <div class="container shadow-lg p-3 mb-5 bg-body rounded">
 
     <div class="container">
         <?php
@@ -131,19 +135,20 @@ if ($_SESSION["g_usuario"] === null) {
             </div>
         </div>
     </div>
+
     <br>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive">
-                    <table id="tablaPersonas" class="display compact table-striped table-bordered table-condensed"
+                    <table id="tablaPersonas" class="display compact table-striped table-bordered table-condensed cell-border"
                            style="width:100%; line-height: 1;">
                         <thead class="text-center" style="height: 50px;">
                         <tr>
                             <th class="oculto">Id</th>
-                            <th>Lugar</th>
-                            <th>Salida</th>
-                            <th>Entrada</th>
+                            <th>Lugar de presentación</th>
+                            <th>Hora de Salida</th>
+                            <th>Hora de Entrada</th>
                             <th>Destino</th>
                             <th>Vehículo</th>
                             <th>Conductor</th>
@@ -178,27 +183,32 @@ if ($_SESSION["g_usuario"] === null) {
                                 <?php
                                 if ($estado == $rol) {
                                     if ($rol == 5 || $rol == 6 || $rol == 4) {
-                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD' disabled>ELIMINAR</button></div></div></td>";
+                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD btn-sm' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD btn-sm' disabled>ELIMINAR</button></div></div></td>";
 
                                     } else {
-                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>EDITAR</button><button class='btn btn-danger btnBorrar'>ELIMINAR</button></div></div></td>";
+                                        echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar btn-sm'>EDITAR</button><button class='btn btn-danger btnBorrar btn-sm'>ELIMINAR</button></div></div></td>";
 
                                     }
 
                                 } else {
-                                    echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD' disabled>ELIMINAR</button></div></div></td>";
+                                    echo "<td><div class='text-center'><div class='btn-group'><button class='btn btn-secondary btnEditarD btn-sm' disabled>EDITAR</button><button class='btn btn-secondary btnBorrarD btn-sm' disabled>ELIMINAR</button></div></div></td>";
                                 } ?>
                             </tr>
                             <?php
                         }
                         ?>
+                        <tr>
+                            <td class="oculto"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
                         </tbody>
+
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
+    </div>
 
     <!--modal para ELEVAR PLANILLA-->
 
@@ -226,6 +236,9 @@ if ($_SESSION["g_usuario"] === null) {
                             <?php
                             echo "<input type='date' id='fechaElevar' name='fechaElevar' value='" . $fecha . "'
                                     max='" . $fecha . "'>";
+                            echo "<input type='input' id='auxGu' name='auxGu' value='" . $auxGu . "'>";
+                            echo "<input type='input' id='jGu' name='jGu' value='" . $jGu . "'>";
+                            echo "<input type='input' id='ofSer' name='ofSer' value='" . $ofSer . "'>";
                             ?>
                         </div>
                         <?php

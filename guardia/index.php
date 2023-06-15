@@ -22,13 +22,13 @@ if(isset($_POST['fechaP'])){
 }
 
 $fechaformateada=date('d-m-Y', strtotime($fechaP));
-echo "<h2>SERVICIO DE GUARDIA DE FECHA $fechaformateada</h2>";
+
 ?>
 
 
 <!--INICIO del cont principal-->
-<div class="container">
-    <h1></h1>
+<div class="container-fluid" style="padding-bottom:1rem;background: #F8F9FC;width: 90%">
+
     <?php
     $objeto = new Conexion();
     $conexion = $objeto->Conectar();
@@ -57,19 +57,16 @@ echo "<h2>SERVICIO DE GUARDIA DE FECHA $fechaformateada</h2>";
     $resultado = $conexion->prepare($consulta);
     $resultado->execute();
     $estados = $resultado->fetchAll(PDO::FETCH_ASSOC);
-    //$estados=array($estadosA);
-    //foreach ($estadosA as $est) {
-//var_dump($estados);
-//echo $estados[0][0];
-    //}
-
- //   $domain = getenv('USERDOMAIN');
-    //  echo "usu  dominio: ".$domain;
-   // $user = shell_exec("echo %username%");
-    // echo "<br>user : $user";
-
+    $hoy = date('Y-m-d', time());
+    //echo $hoy;
     ?>
-
+    <div class="jumbotron" style="padding: 1rem 1rem; background: #F8F9FC;">
+        <div class="container shadow-lg p-3 mb-5 bg-body rounded">
+            <?php echo "<H1 class='display-5' style=''>SERVICIO DE GUARDIA DE FECHA $fechaformateada</H1>"; ?>
+            <hr class="my-4">
+        </div>
+    </div>
+    <div class="container shadow-lg p-3 mb-5 bg-body rounded">
 
     <div class="container">
         <div class="row">
@@ -86,7 +83,7 @@ echo "<h2>SERVICIO DE GUARDIA DE FECHA $fechaformateada</h2>";
 
 
 
-                            <input type="date" id="fechaP" name="fechaP" value="<?php echo $fechaP;?>">
+                            <input type="date" id="fechaP" name="fechaP" max="<?php echo $hoy;?>" value="<?php echo $fechaP;?>">
                         <?php
                           //  echo $fechaP."////";
                           //  echo strtotime($fechaP);
@@ -163,6 +160,7 @@ echo "<h2>SERVICIO DE GUARDIA DE FECHA $fechaformateada</h2>";
                 </div>
             </div>
         </div>
+
         </form>
 
     </div>
@@ -173,7 +171,7 @@ echo "<h2>SERVICIO DE GUARDIA DE FECHA $fechaformateada</h2>";
 
 
 
-
+    </div>
 
 </div>
 <script>

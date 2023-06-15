@@ -1,12 +1,171 @@
 $(document).ready(function () {
     tablaPersonas = $("#tablaPersonas").DataTable({
-        "order": [[ 0, "asc" ]],
+        "order": [[0, "asc"]],
         // "columnDefs": [{
         //      "targets": -1,
         //      "data": null,
         //      "defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>EDITAR</button><button class='btn btn-danger btnBorrar'>ELIMINAR</button></div></div>"
         // }
         // ],
+        "dom": '<"dt-buttons"Bf><"clear">lirtp',
+        "buttons": [
+            {
+                extend: 'pdfHtml5',
+                text: '<button class="btn-danger">Ver Planilla<i class="far fa-file-pdf"></i></button>',
+                download: 'open',
+                //className: '',
+                //messageTop: ' ',
+                title: '   ',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                exportOptions: {
+                    columns: [1, 2, 3,4,5,6,7,8,9],
+                    //  columns: ':visible',
+                    search: 'applied',
+                    order: 'applied'
+                },
+                customize: function (doc) {
+                    var now = new Date();
+                    var jsDate = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
+                    let table = doc.content[1].table.body;
+                    //table.width="50%";
+                    //table.row.fillColor= 'black';
+                    // table.row.add({
+                    //     text: 'texto',
+                    //     //style: 'tableData',
+                    //     alignment: 'left'
+                    // });
+                    // for (i = 1; i < table.length; i++) // skip table header row (i = 0)
+                    // {
+                    //     table[i][3].text = "s "; // couldn't be bothered clearing the Age column sample data above :)
+                    //     table[i][i].fillColor = "black"; // ( divided by 9 since 9 rows in my example)
+                    //     table[i][3].border= 2;
+                    //
+                    //
+                    //
+                    // }
+                    //table[3][3].width="100";
+                    //doc.content[1].table.body[3][3]=100;
+                    //console.log( doc.content );
+                    //doc.content[2].table.widths = [ '10%', '12%', '12%', '18%'];
+
+                    let fecha = new Date(document.getElementById("fechaElevar").value);
+                    fecha.setMinutes(fecha.getMinutes() + fecha.getTimezoneOffset())
+
+                    let auxGu = (document.getElementById("auxGu").value);
+                    let jGu = (document.getElementById("jGu").value);
+                    let ofSer = (document.getElementById("ofSer").value);
+                   // console.log(fecha.toDateString());
+                    let dia, mes, anio;
+                   // console.log(now);
+                    var objLayout = {};
+                    objLayout['hLineWidth'] = function (i) {
+                        return 1;
+                    };
+                    objLayout['vLineWidth'] = function (i) {
+                        return 1;
+                    };
+                    objLayout['hLineColor'] = function (i) {
+                        return 'black';
+                    };
+                    objLayout['vLineColor'] = function (i) {
+                        return 'black';
+                    };
+                    objLayout['paddingLeft'] = function (i) {
+                        return 4;
+                    };
+                    objLayout['paddingRight'] = function (i) {
+                        return 4;
+                    };
+                    //doc.content[1].widths = [ '*', 'auto', 100, '*' ];
+                    doc.content[1].layout = objLayout;
+                    doc.content[1].widths = [ '*', 'auto', 100, '*' ];
+                   // console.log("fecha: "+fecha);
+                    dia = fecha.getDate();
+                   // console.log("dia: "+dia);
+                    mes = new Intl.DateTimeFormat('es-ES', {month: 'long'}).format(fecha);
+                    anio = fecha.getFullYear();
+
+                    doc.content.splice(1, 0,
+                        {
+                            columns: [{
+
+                                text: 'PLANILLA DE REGISTRO DE MOVIMIENTOS DE VEHÍCULOS OFICIALES \n ' +
+                                    'Servicio de Guardia del día ' + dia + ' de ' + mes + ' de ' + anio + '\n\n',
+                                fontSize: 13,
+                                decoration: 'underline',
+                                alignment: 'center',
+                                margin: [0, 0, 0, 0]
+                            }]
+                        },{
+                            columns: [{
+
+                                text: 'OFICIAL DE SERVICIO: \t'+ ofSer +
+                                    '\nJEFE DE GUARDIA: \t' + jGu +
+                                '\nAUXILIAR DE GUARDIA: \t' + auxGu+ '\n\n',
+                                fontSize: 13,
+
+                                alignment: 'left',
+                                margin: [0, 1, 0, 0]
+                            }]
+                        }
+                    );
+
+                    var now = new Date();
+                    var jsDate = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
+                    doc.pageMargins = [20, 60, 20, 40];
+                    doc.defaultStyle.fontSize = 9;
+                    doc.styles.tableHeader.fontSize = 10;
+                    doc.content[1].maxWidth = 20;
+
+
+                    doc['header'] = (function () {
+                        return {
+                            columns: [
+                                {
+                                    text: 'Ejército Argentino\n Facultad de Ingeniería del Ejército',
+                                    fontSize: 13,
+                                    italics: true,
+                                    alignment: 'center',
+                                    margin: [0, 0, 0, 5],
+                                },
+                                {
+                                    alignment: 'left',
+                                    italics: true,
+                                    text: '',
+                                    fontSize: 18,
+                                    margin: [10, 0]
+                                },
+                                {
+                                    alignment: 'left',
+                                    fontSize: 14,
+                                    text: ''
+
+                                }
+
+                            ],
+                            margin: 20
+                        }
+                    });
+
+                    doc['footer'] = (function (page, pages) {
+                        return {
+                            columns: [
+                                {
+                                    //   alignment: 'left',
+                                    // text: ['Created on: ', { text: jsDate.toString() }]
+                                },
+                                {
+                                    alignment: 'right',
+                                    text: ['Página ', {text: page.toString()}, ' de ', {text: pages.toString()}]
+                                }
+                            ],
+                            margin: 20
+                        }
+                    });
+
+                }
+            }],
         "searching": false,
         "paging": false,
         "info": false,
@@ -56,11 +215,11 @@ $(document).ready(function () {
     });
     var fila; //capturar la fila para editar o borrar el registro
 
-    //botón EDITAR    
+    //botón EDITAR
     $(document).on("click", ".btnEditar", function () {
         fila = $(this).closest("tr");
         id = parseInt(fila.find('td:eq(0)').text());
-       // nro = parseInt(fila.find('td:eq(1)').text());
+        // nro = parseInt(fila.find('td:eq(1)').text());
         lugar = fila.find('td:eq(1)').text();
         salida = fila.find('td:eq(2)').text();
         entrada = fila.find('td:eq(3)').text();
@@ -98,7 +257,7 @@ $(document).ready(function () {
         //alert(id);
         //tablaPersonas.row(id).remove().draw();
         opcion = 3 //borrar
-        var respuesta = confirm("¿Está seguro de eliminar el registro: " + id + "?");
+        var respuesta = confirm("¿Está seguro de eliminar el registro?");
         if (respuesta) {
             tablaPersonas.row(fila.parents('tr')).remove().draw();
 
@@ -106,9 +265,9 @@ $(document).ready(function () {
                 url: "bd/crud1.php",
                 type: "POST",
                 dataType: "json",
-                data: { opcion: opcion, id: id },
+                data: {opcion: opcion, id: id},
                 success: function () {
-                   // tablaPersonas.row(fila.parents('tr')).remove().draw();
+                    // tablaPersonas.row(fila.parents('tr')).remove().draw();
 
                 }
             });
@@ -129,18 +288,31 @@ $(document).ready(function () {
         obs = $.trim($("#obs").val());
         fecha = $.trim($("#fecha1").val());
 
-       // var table = $('#tablaPersonas').DataTable();
+        // var table = $('#tablaPersonas').DataTable();
 
         //alert( 'Rows '+table.data().count()+' are selected' );
-       // cant=table.data().count()+1;
+        // cant=table.data().count()+1;
 
         $.ajax({
             url: "bd/crud1.php",
             type: "POST",
             dataType: "json",
-            data: { lugar: lugar, salida: salida, entrada: entrada, destino: destino, vehiculo: vehiculo, conductor: conductor, kmsalida: kmsalida, kmentrada: kmentrada, obs: obs, id: id,fecha:fecha, opcion: opcion },
+            data: {
+                lugar: lugar,
+                salida: salida,
+                entrada: entrada,
+                destino: destino,
+                vehiculo: vehiculo,
+                conductor: conductor,
+                kmsalida: kmsalida,
+                kmentrada: kmentrada,
+                obs: obs,
+                id: id,
+                fecha: fecha,
+                opcion: opcion
+            },
             success: function (data) {
-               // console.log(data);
+                // console.log(data);
                 id = data[0].id;
                 lugar = data[0].lugar;
                 salida = data[0].horaSalida;
@@ -151,12 +323,12 @@ $(document).ready(function () {
                 kmSalida = data[0].kmSalida;
                 kmEntrada = data[0].kmEntrada;
                 obs = data[0].observacion;
-                botones= "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar'>EDITAR</button><button class='btn btn-danger btnBorrar'>ELIMINAR</button></div></div></td>";
+                botones = "<td><div class='text-center'><div class='btn-group'><button class='btn btn-primary btnEditar btn-sm'>EDITAR</button><button class='btn btn-danger btnBorrar btn-sm'>ELIMINAR</button></div></div></td>";
                 if (opcion == 1) {
                     tablaPersonas.order([0, 'desc']).draw();
 
                     tablaPersonas.row.add([id, lugar, salida, entrada, destino, vehiculo, conductor, kmSalida, kmEntrada, obs, botones]).draw();
-                     $('#tablaPersonas tbody td').eq(0).addClass('oculto');
+                    $('#tablaPersonas tbody td').eq(0).addClass('oculto');
                     // $('#tablaPersonas tbody td').eq(5).addClass('oculto');
                     // $('#tablaPersonas tbody td').eq(6).addClass('oculto');
                     // $('#tablaPersonas tbody td').eq(7).addClass('oculto');
@@ -171,11 +343,10 @@ $(document).ready(function () {
                     tablaPersonas.order([0, 'asc']).draw();
 
 
-                }
-                else {
+                } else {
                     if (opcion == 2) {
                         tablaPersonas.row(fila).data([id, lugar, salida, entrada, destino, vehiculo, conductor, kmSalida, kmEntrada, obs, botones]).draw();
-                    }else{
+                    } else {
                         tablaPersonas.row(fila).data([id, lugar, salida, entrada, destino, vehiculo, conductor, kmSalida, kmEntrada, obs, botones]).draw();
                     }
 

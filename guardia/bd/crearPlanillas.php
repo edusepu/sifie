@@ -2,7 +2,7 @@
 include_once 'conexion.php';
 // include_once 'bd/conexion.php';
 
- 
+
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 date_default_timezone_set('America/Argentina/Buenos_Aires');
