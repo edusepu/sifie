@@ -59,9 +59,9 @@
         - Se permiten archivos .gif, .jpg, .png. y de 2 MB como máximo.</b></div>';
              }
              else {
-                 if (move_uploaded_file($temp, 'imagenes2/menu.jpg')) {
+                 if (move_uploaded_file($temp, 'imagenes/menu.jpg')) {
                      echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
-                     echo '<p><img src="imagenes2/menu.jpg"></p>';
+                     echo '<p><img src="imagenes/menu.jpg"></p>';
                  }
                  else {
                      echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';

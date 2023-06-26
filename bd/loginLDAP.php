@@ -87,6 +87,7 @@ if (@ldap_bind($ad, $user, $password)) {
         $fundacion = $link['fundacion'];
         $proyecto = $link['proyecto'];
         $rolG =  $link['guardia'];
+        $rolTV = $link['tv'];
 
     }
 
@@ -102,6 +103,7 @@ if (@ldap_bind($ad, $user, $password)) {
         $_SESSION["proyecto"] = $proyecto;
         $_SESSION["tipologin"] = 1;//con usuario de dominio
         $_SESSION["nombre"] = $nombre;
+        $_SESSION["rolTV"] = $rolTV;
     }else{
         $_SESSION["s_usuario"] = null;
         $_SESSION["g_usuario"] = null;
