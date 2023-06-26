@@ -1,0 +1,45 @@
+<html>
+
+<head>
+<title>Televisores </title>
+</head>
+
+<body>
+
+
+<style>
+body {background-color:white}
+
+
+</style>
+<img src="" name="img2" width=100% height=15%  align="middle">
+<img src="" name="img" width=100% height=85%  align="middle">
+
+
+<script language="JavaScript" type="text/javascript">
+var num_img=1; 
+
+	function cambiar() 
+	{      
+			imagen2=new Image
+		    imagen=new Image
+         		
+				 imagen2.src="info/2.jpg"
+		         imagen.src="imgram/" + num_img + ".jpg" 
+         			
+				 
+				 document.images['img2'].src=imagen2.src 
+		         document.images['img'].src=imagen.src 
+                 num_img=num_img+1; 
+
+		if (num_img>14)
+		{
+			num_img=1
+		}
+	}
+
+setInterval("cambiar()",10000);
+</script>
+
+</body>
+</html>

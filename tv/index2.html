@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Plantilla Bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+    <h1>Hola, como estas?</h1>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+	<div id="contenedor">
+    	<div id="myCarousel" class="carousel slide">
+     	<ol class="carousel-indicators">
+        
+	<?php
+		$cont=0;
+		$folder_path = './imgram/';
+		$num_files = glob($folder_path . "*.{JPG,jpeg,gif,png,bmp}", GLOB_BRACE);
+		$folder = opendir($folder_path);
+		if($num_files > 0){
+ 			while(false !== ($file = readdir($folder)))  {
+  				$file_path = $folder_path.$file;
+  				$extension = strtolower(pathinfo($file ,PATHINFO_EXTENSION));
+  				if($extension=='jpg' || $extension =='png' || $extension == 'gif' || $extension == 'bmp') {
+					if($cont=='0'){
+	<?
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	<?php        	
+					}else {
+
+
+	<?
+		<li data-target="#myCarousel" data-slide-to="<?php echo $cont <?"></li>
+      	</ol>
+      	<?php	echo			} <?
+
+	<!-- Carousel items -->
+      	<div class="carousel-inner">
+	<?php				if($cont=='0'){ <?
+
+        <div class="active item"><img  src="<?php echo $file_path <?" alt="banner1" /></div>
+	<?php 				}else { <?
+
+        <div class="item"><img  src="?php echo $file_path <?" alt="banner.<?php echo $cont+1 <?" /></div>
+	<?php 				}
+				}
+	<?
+
+      </div>
+      <!-- Carousel nav -->
+     <!-- <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> -->
+     <!-- <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> -->
+    </div>
+</div>
+ 
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.myCarousel').carousel()
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
