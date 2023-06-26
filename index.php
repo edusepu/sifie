@@ -43,7 +43,7 @@ if($_SESSION["s_usuario"] === null){
                         <a class='btn btn-success' href='efectos' role='button'>SISTEMA DE EFECTOS</a>
 
                         <a class='btn btn-success' href='guardia' role='button'>GUARDIA</a>
-
+                        <a class='btn btn-success' href='tv' role='button'>Imagenes TV</a>
                     </div>
                 </div>
         </div>
