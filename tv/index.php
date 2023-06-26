@@ -2,7 +2,7 @@
 session_start();
 //var_dump($_SESSION);
 if (isset($_SESSION['rolTV'])) {
-    if ($_SESSION["rolTV"] === 1) {
+    if ($_SESSION["rolTV"] == 1) {
         echo "    <a href='listado.php' class='btn btn-primary'>Cargar imagenes</a>";
     }
 }

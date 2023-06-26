@@ -2,7 +2,7 @@
 session_start();
 //echo $_SESSION["s_usuario"];
 //echo "hola";
-var_dump($_SESSION);
+//var_dump($_SESSION);
 if($_SESSION["s_usuario"] === null){
     header("Location: login.php");
 }
