@@ -1,3 +1,22 @@
+<?php
+session_start();
+//echo $_SESSION["s_usuario"];
+//echo "hola";
+//var_dump($_SESSION);
+if (isset($_SESSION['rolTV'])) {
+    if ($_SESSION["rolTV"] == 1) {
+        echo "    <a href='listado.php' class='btn btn-primary'>Cargar imagenes</a>";
+    }else{
+        header("Location: index.php");
+
+    }
+}else{
+    header("Location: index.php");
+
+}
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
