@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ed546dbe-d298-41be-9f3d-6e7deb4c7a75" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/tv/listado.php" beforeDir="false" afterPath="$PROJECT_DIR$/tv/listado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/detalle.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/detalle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/detalle2.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/detalle2.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/detalleF.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/detalleF.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/efectos/efectos/detallem.php" beforeDir="false" afterPath="$PROJECT_DIR$/efectos/efectos/detallem.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,17 +27,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/xampp/htdocs/sifie/guardia/bd&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/xampp/htdocs/sifie/efectos/efectos",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\sifie\efectos\efectos" />
       <recent name="C:\xampp\htdocs\sifie\guardia\bd" />
       <recent name="C:\xampp\htdocs\sifie\bd" />
       <recent name="C:\xampp\htdocs\sifie\guardia" />

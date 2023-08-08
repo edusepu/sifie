@@ -7,7 +7,7 @@ if(isset($_SESSION["s_usuario"])){
 }
 
 
-include_once '../bd/conexion.php';
+include_once '../../bd/conexion.php';
 $objeto = new Conexion();
 $conexion = $objeto->Conectar();
 $id = (isset($_GET['id'])) ? $_GET['id'] : '';
